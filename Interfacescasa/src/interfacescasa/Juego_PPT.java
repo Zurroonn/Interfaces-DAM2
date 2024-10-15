@@ -53,11 +53,11 @@ public class Juego_PPT extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego");
@@ -79,16 +79,20 @@ public class Juego_PPT extends javax.swing.JFrame {
         jTextField2.setText("Victorias:");
 
         buttonGroup2.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Piedra");
         jRadioButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file2.jpg")); // NOI18N
+        jRadioButton1.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\aa.png")); // NOI18N
 
         buttonGroup2.add(jRadioButton2);
         jRadioButton2.setText("Papel");
         jRadioButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file(1).jpg")); // NOI18N
+        jRadioButton2.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file(1).png")); // NOI18N
 
         buttonGroup2.add(jRadioButton3);
         jRadioButton3.setText("Tijera");
         jRadioButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file.png")); // NOI18N
+        jRadioButton3.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file(2).png")); // NOI18N
 
         jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -116,17 +120,12 @@ public class Juego_PPT extends javax.swing.JFrame {
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextField5.setText("Máquina");
 
-        jTextField6.setEditable(false);
-        jTextField6.setText("Elección");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
         jTextField7.setEditable(false);
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField7.setText("Resultado");
+
+        jLabel4.setMaximumSize(new java.awt.Dimension(60, 60));
+        jLabel4.setMinimumSize(new java.awt.Dimension(60, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,20 +157,19 @@ public class Juego_PPT extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(jRadioButton2))
+                                    .addComponent(jRadioButton3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel3))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(41, 41, 41))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(41, 41, 41))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,11 +188,15 @@ public class Juego_PPT extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton2)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton3)
@@ -226,12 +228,24 @@ public class Juego_PPT extends javax.swing.JFrame {
         } else if (jRadioButton3.isSelected()) {
             operacion = Resultado.Tijera;
         }
+        ImageIcon iconop = new ImageIcon("imagenes\\file2.jpg");
+        ImageIcon iconopap = new ImageIcon("imagenes\\file(1).jpg");
+        ImageIcon iconotij = new ImageIcon("imagenes\\file.png");
+        if (maquina == Resultado.Piedra) {
+            jLabel4.setIcon(iconop);
 
-        jTextField6.setText(String.valueOf(maquina));
+        } else if (maquina == Resultado.Papel) {
+            jLabel4.setIcon(iconopap);
+        } else if (maquina == Resultado.Tijera) {
+            jLabel4.setIcon(iconotij);
+
+        }
+
         switch (operacion) {
             case Piedra:
                 if (maquina == Resultado.Piedra) {
                     jTextField7.setText("Empate");
+
                 } else if (maquina == Resultado.Papel) {
                     jTextField7.setText("Gana Maquina");
                     contM++;
@@ -269,10 +283,6 @@ public class Juego_PPT extends javax.swing.JFrame {
         jTextField2.setText("Victorias:" + contM);
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,6 +325,7 @@ public class Juego_PPT extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -324,7 +335,6 @@ public class Juego_PPT extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
