@@ -4,8 +4,11 @@
  */
 package interfacescasa;
 
+import static java.lang.reflect.Array.get;
+import static java.nio.file.Paths.get;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import static javax.swing.UIManager.get;
 
 /**
  *
@@ -31,6 +34,7 @@ public class Juego_PPT extends javax.swing.JFrame {
      */
     public Juego_PPT() {
         initComponents();
+        this.setIconImage(new ImageIcon (getClass().getResource("resources/png-clipart-lightbulb-light-bulb-bulb.png")).getImage());
     }
 
     /**
@@ -83,6 +87,11 @@ public class Juego_PPT extends javax.swing.JFrame {
         jRadioButton1.setText("Piedra");
         jRadioButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file2.jpg")); // NOI18N
         jRadioButton1.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\aa.png")); // NOI18N
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton2);
         jRadioButton2.setText("Papel");
@@ -283,6 +292,12 @@ public class Juego_PPT extends javax.swing.JFrame {
         jTextField2.setText("Victorias:" + contM);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments

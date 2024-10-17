@@ -175,6 +175,9 @@
           <Image iconType="2" name="C:\Users\Manana\Desktop\Interfaces\Interfacescasa\imagenes\aa.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton2">
       <Properties>
