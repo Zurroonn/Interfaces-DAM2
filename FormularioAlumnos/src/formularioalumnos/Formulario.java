@@ -4,6 +4,8 @@
  */
 package formularioalumnos;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author Manana
@@ -305,6 +307,7 @@ public class Formulario extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+ 
         String elec="";
         String matriculado="";
         if (eleccion==curso.Primero) {

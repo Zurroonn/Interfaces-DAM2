@@ -87,6 +87,11 @@ public class Juego_PPT extends javax.swing.JFrame {
         jRadioButton1.setText("Piedra");
         jRadioButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file2.jpg")); // NOI18N
         jRadioButton1.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\aa.png")); // NOI18N
+        jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton1MouseClicked(evt);
+            }
+        });
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -97,11 +102,21 @@ public class Juego_PPT extends javax.swing.JFrame {
         jRadioButton2.setText("Papel");
         jRadioButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file(1).jpg")); // NOI18N
         jRadioButton2.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file(1).png")); // NOI18N
+        jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton2MouseClicked(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton3);
         jRadioButton3.setText("Tijera");
         jRadioButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file.png")); // NOI18N
         jRadioButton3.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\Manana\\Desktop\\Interfaces\\Interfacescasa\\imagenes\\file(2).png")); // NOI18N
+        jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton3MouseClicked(evt);
+            }
+        });
 
         jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -227,9 +242,9 @@ public class Juego_PPT extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-        Resultado[] posibilidades = Resultado.values();
+       /* Resultado[] posibilidades = Resultado.values();
         Resultado maquina = posibilidades[rd.nextInt(3)];
+
         if (jRadioButton1.isSelected()) {
             operacion = Resultado.Piedra;
         } else if (jRadioButton2.isSelected()) {
@@ -290,7 +305,7 @@ public class Juego_PPT extends javax.swing.JFrame {
         }
         jTextField1.setText("Victorias:" + contJ);
         jTextField2.setText("Victorias:" + contM);
-
+*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -298,6 +313,187 @@ public class Juego_PPT extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
+        // TODO add your handling code here:
+                Resultado[] posibilidades = Resultado.values();
+        Resultado maquina = posibilidades[rd.nextInt(3)];
+           ImageIcon iconop = new ImageIcon("imagenes\\file2.jpg");
+        ImageIcon iconopap = new ImageIcon("imagenes\\file(1).jpg");
+        ImageIcon iconotij = new ImageIcon("imagenes\\file.png");
+        operacion=Resultado.Piedra;
+        if (maquina == Resultado.Piedra) {
+            jLabel4.setIcon(iconop);
+
+        } else if (maquina == Resultado.Papel) {
+            jLabel4.setIcon(iconopap);
+        } else if (maquina == Resultado.Tijera) {
+            jLabel4.setIcon(iconotij);
+
+        }
+
+        switch (operacion) {
+            case Piedra:
+                if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Empate");
+
+                } else if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+                }
+                break;
+            case Papel:
+                if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Empate");
+                } else if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+
+                }
+                break;
+            case Tijera:
+                if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Empate");
+                } else if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+                }
+                break;
+
+        }
+        jTextField1.setText("Victorias:" + contJ);
+        jTextField2.setText("Victorias:" + contM);
+    }//GEN-LAST:event_jRadioButton1MouseClicked
+
+    private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
+        // TODO add your handling code here:
+                Resultado[] posibilidades = Resultado.values();
+        Resultado maquina = posibilidades[rd.nextInt(3)];
+        operacion=Resultado.Papel;
+           ImageIcon iconop = new ImageIcon("imagenes\\file2.jpg");
+        ImageIcon iconopap = new ImageIcon("imagenes\\file(1).jpg");
+        ImageIcon iconotij = new ImageIcon("imagenes\\file.png");
+        if (maquina == Resultado.Piedra) {
+            jLabel4.setIcon(iconop);
+
+        } else if (maquina == Resultado.Papel) {
+            jLabel4.setIcon(iconopap);
+        } else if (maquina == Resultado.Tijera) {
+            jLabel4.setIcon(iconotij);
+
+        }
+
+        switch (operacion) {
+            case Piedra:
+                if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Empate");
+
+                } else if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+                }
+                break;
+            case Papel:
+                if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Empate");
+                } else if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+
+                }
+                break;
+            case Tijera:
+                if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Empate");
+                } else if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+                }
+                break;
+
+        }
+        jTextField1.setText("Victorias:" + contJ);
+        jTextField2.setText("Victorias:" + contM);
+    }//GEN-LAST:event_jRadioButton2MouseClicked
+
+    private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
+        // TODO add your handling code here:
+                Resultado[] posibilidades = Resultado.values();
+        Resultado maquina = posibilidades[rd.nextInt(3)];
+        operacion=Resultado.Tijera;
+           ImageIcon iconop = new ImageIcon("imagenes\\file2.jpg");
+        ImageIcon iconopap = new ImageIcon("imagenes\\file(1).jpg");
+        ImageIcon iconotij = new ImageIcon("imagenes\\file.png");
+        
+        if (maquina == Resultado.Piedra) {
+            jLabel4.setIcon(iconop);
+
+        } else if (maquina == Resultado.Papel) {
+            jLabel4.setIcon(iconopap);
+        } else if (maquina == Resultado.Tijera) {
+            jLabel4.setIcon(iconotij);
+
+        }
+
+        switch (operacion) {
+            case Piedra:
+                if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Empate");
+
+                } else if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+                }
+                break;
+            case Papel:
+                if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Empate");
+                } else if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+
+                }
+                break;
+            case Tijera:
+                if (maquina == Resultado.Tijera) {
+                    jTextField7.setText("Empate");
+                } else if (maquina == Resultado.Piedra) {
+                    jTextField7.setText("Gana Maquina");
+                    contM++;
+                } else if (maquina == Resultado.Papel) {
+                    jTextField7.setText("Gana Jugador");
+                    contJ++;
+                }
+                break;
+
+        }
+        jTextField1.setText("Victorias:" + contJ);
+        jTextField2.setText("Victorias:" + contM);
+    }//GEN-LAST:event_jRadioButton3MouseClicked
 
     /**
      * @param args the command line arguments
