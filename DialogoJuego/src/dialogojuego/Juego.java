@@ -20,6 +20,8 @@ public class Juego extends javax.swing.JFrame {
     public Juego() {
 
         initComponents();
+        
+
     }
 
     /**
@@ -80,32 +82,42 @@ public class Juego extends javax.swing.JFrame {
             public void run() {
                 Juego juego = new Juego();
                 juego.setVisible(true);
-                juego.jueguito();
+                do {
+                    juego.jueguito();
+                }while (JOptionPane.showConfirmDialog(juego, "Quieres repetir", "Di", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
+                
+                JOptionPane.showMessageDialog(juego,"Saliendo");
+                juego.dispose();
+                
             }
         });
     }
-    private  void jueguito(){
-                Random rd= new Random();
-        Scanner sc= new Scanner(System.in);        
-        int respuestaM=rd.nextInt(10);
-        boolean boo=true;
-    
-        do{
-String seleccion = JOptionPane.showInputDialog(this,"Introduce el numero", "Adivina",JOptionPane.QUESTION_MESSAGE);  // el icono sera un iterrogante
-        int respuestaJ=Integer.parseInt(seleccion);       
-        if (respuestaJ<respuestaM) {
-            JOptionPane.showMessageDialog(this,"El numero es mayor","Repite",JOptionPane.QUESTION_MESSAGE);
-        }else if(respuestaJ>respuestaM){
-        JOptionPane.showMessageDialog(this,"El numero es menor","Repite",JOptionPane.QUESTION_MESSAGE);
-             
-        }else{
-            JOptionPane.showMessageDialog(this,"Acertaste");
-            boo=false;
-        }
-        }while(boo);
-}
+
+    private void jueguito() {
+        Random rd = new Random();
+        Scanner sc = new Scanner(System.in);
+        int respuestaM = rd.nextInt(1, 11);
+        boolean boo = true;
+        
+        do {
+            
+            String seleccion = JOptionPane.showInputDialog(this, "Introduce el numero", "Adivina", JOptionPane.QUESTION_MESSAGE);  // el icono sera un iterrogante
+            int respuestaJ = Integer.parseInt(seleccion);
+            if (respuestaJ < respuestaM) {
+                JOptionPane.showMessageDialog(this, "El numero es mayor", "Repite", JOptionPane.QUESTION_MESSAGE);
+            } else if (respuestaJ > respuestaM) {
+                JOptionPane.showMessageDialog(this, "El numero es menor", "Repite", JOptionPane.QUESTION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Acertaste");
+                boo = false;
+            }
+        } while (boo);
+
+
+       
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
-
-
