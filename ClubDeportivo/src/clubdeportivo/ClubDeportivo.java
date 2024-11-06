@@ -769,7 +769,14 @@ public class ClubDeportivo extends javax.swing.JFrame {
         String direccion = DireccionJ.getText();
         int telefono = Integer.parseInt(TelefonoJ.getText());
         int sueldo = Integer.parseInt(TelefonoJ.getText());
-        
+         String posicion="";
+        if (Presidente.isSelected()) {
+            posicion="Presidente";
+        } else if (Presidente.isSelected()) {
+            posicion="Delegado";
+        } else if (Presidente.isSelected()) {
+            posicion="Secretario";
+        }
     }//GEN-LAST:event_GuardarJActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
