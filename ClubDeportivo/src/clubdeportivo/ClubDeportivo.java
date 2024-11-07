@@ -5,10 +5,23 @@
 package clubdeportivo;
 
 import clubdeportivo.modelo.Directivo;
+import clubdeportivo.modelo.Entrenadores;
+import clubdeportivo.modelo.Jugadores;
+import clubdeportivo.modelo.Mantenedores;
 import clubdeportivo.modelo.Personal;
-import java.awt.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -20,7 +33,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
     ArrayList<Personal> listaJugadores = new ArrayList<>();
     ArrayList<Personal> listaEntrenadores = new ArrayList<>();
     ArrayList<Personal> listaMantenedores = new ArrayList<>();
-
+    StringBuilder contenido= new StringBuilder();
     enum Cargo {
         Presidente,
         Vicepresidente,
@@ -68,7 +81,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
         CheckD = new javax.swing.JCheckBox();
         Presidente = new javax.swing.JRadioButton();
         Delegado = new javax.swing.JRadioButton();
-        Secreatorio = new javax.swing.JRadioButton();
+        Secretario = new javax.swing.JRadioButton();
         GuardarD = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -107,7 +120,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
         SueldoE = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         PartidosGanadosE = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        GuardarE = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -122,8 +135,10 @@ public class ClubDeportivo extends javax.swing.JFrame {
         SueldoM = new javax.swing.JTextField();
         Fijo = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
+        GuardarM = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        Texto = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Texto = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         Archivo = new javax.swing.JMenu();
         Grabar = new javax.swing.JMenuItem();
@@ -213,8 +228,8 @@ public class ClubDeportivo extends javax.swing.JFrame {
         Cargo.add(Delegado);
         Delegado.setText("Delegado");
 
-        Cargo.add(Secreatorio);
-        Secreatorio.setText("Secretario");
+        Cargo.add(Secretario);
+        Secretario.setText("Secretario");
 
         GuardarD.setText("Guardar");
         GuardarD.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +253,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Delegado)
-                            .addComponent(Secreatorio)
+                            .addComponent(Secretario)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Presidente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,7 +279,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Delegado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Secreatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Secretario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(GuardarD)
                 .addGap(15, 15, 15))
@@ -358,7 +373,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha Nacimiento:");
 
-        Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         jLabel7.setText("Partidos Ganados:");
 
@@ -499,10 +514,10 @@ public class ClubDeportivo extends javax.swing.JFrame {
 
         jLabel9.setText("Partidos ganados:");
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        GuardarE.setText("Guardar");
+        GuardarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                GuardarEActionPerformed(evt);
             }
         });
 
@@ -518,7 +533,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
                         .addComponent(PartidosGanadosE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(GuardarE))
                 .addGap(0, 103, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -530,7 +545,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(PartidosGanadosE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(GuardarE)
                 .addContainerGap())
         );
 
@@ -606,6 +621,13 @@ public class ClubDeportivo extends javax.swing.JFrame {
 
         jLabel10.setText("Fijo:");
 
+        GuardarM.setText("Guardar");
+        GuardarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarMActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -614,12 +636,18 @@ public class ClubDeportivo extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(Fijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel10)))
-                .addGap(0, 142, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(129, 129, 129)
+                                .addComponent(Fijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addComponent(jLabel10)))
+                        .addGap(0, 142, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GuardarM)
+                        .addGap(108, 108, 108))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,24 +657,26 @@ public class ClubDeportivo extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Fijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GuardarM)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Mantenedores", jPanel4);
 
-        Texto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        Texto.setColumns(20);
+        Texto.setRows(5);
+        jScrollPane1.setViewportView(Texto);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Texto)
+            .addComponent(jScrollPane1)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(Texto, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
         );
 
         Archivo.setText("Archivo");
@@ -657,15 +687,35 @@ public class ClubDeportivo extends javax.swing.JFrame {
                 GrabarMouseClicked(evt);
             }
         });
+        Grabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GrabarActionPerformed(evt);
+            }
+        });
         Archivo.add(Grabar);
 
         Borrar.setText("Borrar linea");
+        Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarActionPerformed(evt);
+            }
+        });
         Archivo.add(Borrar);
 
         Vaciar.setText("Vaciar linea");
+        Vaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VaciarActionPerformed(evt);
+            }
+        });
         Archivo.add(Vaciar);
 
         Llenar.setText("Llenar lista");
+        Llenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LlenarActionPerformed(evt);
+            }
+        });
         Archivo.add(Llenar);
 
         jMenuBar1.add(Archivo);
@@ -673,6 +723,11 @@ public class ClubDeportivo extends javax.swing.JFrame {
         ES.setText("E / S archivos");
 
         Importar.setText("Importar");
+        Importar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImportarActionPerformed(evt);
+            }
+        });
         ES.add(Importar);
 
         Exportar.setText("Exportar");
@@ -747,9 +802,9 @@ public class ClubDeportivo extends javax.swing.JFrame {
         String cargo="";
         if (Presidente.isSelected()) {
             cargo="Presidente";
-        } else if (Presidente.isSelected()) {
+        } else if (Delegado.isSelected()) {
             cargo="Delegado";
-        } else if (Presidente.isSelected()) {
+        } else if (Secretario.isSelected()) {
             cargo="Secretario";
         }
         String activo="";
@@ -760,6 +815,8 @@ public class ClubDeportivo extends javax.swing.JFrame {
         }
         Directivo directivo = new Directivo(nombre, DNI, direccion, telefono, sueldo,cargo,activo);
         listaDirectivo.add(directivo);
+        contenido.append(directivo).append("\n");
+        Texto.setText(contenido.toString());
     }//GEN-LAST:event_GuardarDActionPerformed
 
     private void GuardarJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarJActionPerformed
@@ -770,18 +827,119 @@ public class ClubDeportivo extends javax.swing.JFrame {
         int telefono = Integer.parseInt(TelefonoJ.getText());
         int sueldo = Integer.parseInt(TelefonoJ.getText());
          String posicion="";
-        if (Presidente.isSelected()) {
-            posicion="Presidente";
-        } else if (Presidente.isSelected()) {
-            posicion="Delegado";
-        } else if (Presidente.isSelected()) {
-            posicion="Secretario";
+        if (Portero.isSelected()) {
+            posicion="Portero";
+        } else if (Defensa.isSelected()) {
+            posicion="Defensa";
+        } else if (Delantero.isSelected()) {
+            posicion="Delantero";
         }
+        int Partidosganados= (Integer)( PartidosG.getValue());
+        int Golespartido=(Integer) Goles.getValue();
+        String fechanacimiento=Fecha.getText();
+        Jugadores jugador= new Jugadores(nombre, DNI, direccion, telefono, sueldo,posicion,Partidosganados,Golespartido,fechanacimiento);
+        listaJugadores.add(jugador);
+        contenido.append(jugador).append("\n");
+        Texto.setText(contenido.toString());
     }//GEN-LAST:event_GuardarJActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GuardarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String nombre = NombreJ.getText();
+        String DNI = DNIJ.getText();
+        String direccion = DireccionJ.getText();
+        int telefono = Integer.parseInt(TelefonoJ.getText());
+        int sueldo = Integer.parseInt(TelefonoJ.getText());
+        int Partidosganados= (Integer) PartidosG.getValue();
+        Entrenadores entrenador= new Entrenadores(nombre, DNI, direccion, telefono, sueldo,Partidosganados);
+        listaEntrenadores.add(entrenador);
+        contenido.append(entrenador).append("\n");
+        Texto.setText(contenido.toString());
+    }//GEN-LAST:event_GuardarEActionPerformed
+
+    private void GuardarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarMActionPerformed
+        // TODO add your handling code here:
+        String nombre = NombreJ.getText();
+        String DNI = DNIJ.getText();
+        String direccion = DireccionJ.getText();
+        int telefono = Integer.parseInt(TelefonoJ.getText());
+        int sueldo = Integer.parseInt(TelefonoJ.getText());
+        int fijo=(Integer)Fijo.getSelectedItem();
+        Mantenedores mantenedor= new Mantenedores(nombre, DNI, direccion, telefono, sueldo,fijo);
+        listaMantenedores.add(mantenedor);
+        contenido.append(mantenedor.toString()).append("\n");
+        Texto.setText(contenido.toString());
+    }//GEN-LAST:event_GuardarMActionPerformed
+
+    private void GrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrabarActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(this);
+            if (option == JFileChooser.APPROVE_OPTION) {
+        File archivo = fileChooser.getSelectedFile();
+
+        if (!archivo.getName().toLowerCase().endsWith(".txt")) {
+            archivo = new File(archivo.getAbsolutePath() + ".txt");
+            
+        }
+         try (FileWriter writer = new FileWriter(archivo)) {
+            Texto.write(writer); 
+            JOptionPane.showMessageDialog(this, "Archivo guardado con éxito", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+
+           
+            
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+            }
+    }//GEN-LAST:event_GrabarActionPerformed
+
+    private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
+        // TODO add your handling code here:
+int lastIndex = contenido.lastIndexOf("\n");
+
+if (lastIndex != -1) {
+    contenido.delete(lastIndex, contenido.length());
+} else {
+  
+    contenido.setLength(0);
+}
+
+Texto.setText(contenido.toString());
+    }//GEN-LAST:event_BorrarActionPerformed
+
+    private void VaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VaciarActionPerformed
+        // TODO add your handling code here:
+        contenido.delete(0, contenido.length());
+        Texto.setText(" ");
+    }//GEN-LAST:event_VaciarActionPerformed
+
+    private void LlenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LlenarActionPerformed
+        // TODO add your handling code here:
+        contenido.append("Estas creando una linea divisoria entre el resto del contenido existente").append("\n");
+        Texto.setText(contenido.toString());
+    }//GEN-LAST:event_LlenarActionPerformed
+
+    private void ImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarActionPerformed
+        // TODO add your handling code here:
+              JFileChooser fileChooser = new JFileChooser();
+              FileFilter filtro= new FileNameExtensionFilter("Archivo de datos",".dat");
+              fileChooser.setFileFilter(filtro);
+              if(fileChooser.showOpenDialog(this)!=JFileChooser.APPROVE_OPTION){
+              return;
+              }
+       
+        try {
+            ObjectInputStream oos= new ObjectInputStream(new FileInputStream(fileChooser.getSelectedFile()));
+            Object obj= oos.readObject();
+            contenido.append((String) obj).append("\n");
+            Texto.setText(contenido.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(ClubDeportivo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClubDeportivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ImportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -841,7 +999,9 @@ public class ClubDeportivo extends javax.swing.JFrame {
     private javax.swing.JSpinner Goles;
     private javax.swing.JMenuItem Grabar;
     private javax.swing.JButton GuardarD;
+    private javax.swing.JButton GuardarE;
     private javax.swing.JButton GuardarJ;
+    private javax.swing.JButton GuardarM;
     private javax.swing.JMenuItem Importar;
     private javax.swing.JMenuItem Llenar;
     private javax.swing.JTextField NombreD;
@@ -853,7 +1013,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
     private javax.swing.JRadioButton Portero;
     private javax.swing.JRadioButton Presidente;
     private javax.swing.JMenu Salir;
-    private javax.swing.JRadioButton Secreatorio;
+    private javax.swing.JRadioButton Secretario;
     private javax.swing.JTextField Sueldo;
     private javax.swing.JTextField SueldoD;
     private javax.swing.JTextField SueldoE;
@@ -862,9 +1022,8 @@ public class ClubDeportivo extends javax.swing.JFrame {
     private javax.swing.JTextField TelefonoE;
     private javax.swing.JTextField TelefonoJ;
     private javax.swing.JTextField TelefonoM;
-    private javax.swing.JTextField Texto;
+    private javax.swing.JTextArea Texto;
     private javax.swing.JMenuItem Vaciar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
@@ -902,6 +1061,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,17 +9,18 @@ package clubdeportivo.modelo;
  * @author Manana
  */
 public class Entrenadores extends Personal{
-    boolean PartidoGanado;
+    int PartidoGanado;
 
-    public Entrenadores(String nombre, String DNI, String direccion, int Telefono, int Sueldo) {
+    public Entrenadores(String nombre, String DNI, String direccion, int Telefono, int Sueldo,int PartidoGanado) {
         super(nombre, DNI, direccion, Telefono, Sueldo);
+        this.PartidoGanado=PartidoGanado;
     }
 
 
 
     @Override
     public String toString() {
-        return "Entrenadores{" + "PartidoGanado=" + PartidoGanado + '}';
+        return "Entrenadores"+ super.toString() + "PartidoGanado=" + PartidoGanado ;
     }
     
 

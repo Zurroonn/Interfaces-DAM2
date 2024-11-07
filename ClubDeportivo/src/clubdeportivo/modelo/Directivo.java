@@ -23,7 +23,7 @@ public class Directivo extends Personal{
 
     @Override
     public String toString() {
-        return "Directivo{" + "cargo=" + cargo + ", activo=" + activo + '}';
+        return "Directivo:" + super.toString() + "cargo=" + cargo + ", activo=" + activo ;
     }
 
     

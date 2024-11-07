@@ -26,7 +26,7 @@ public class Personal {
 
     @Override
     public String toString() {
-        return "Personal{" + "nombre=" + nombre + ", DNI=" + DNI + ", direccion=" + direccion + ", Telefono=" + Telefono + ", Sueldo=" + Sueldo + '}';
+        return "nombre=" + nombre + ", DNI=" + DNI + ", direccion=" + direccion + ", Telefono=" + Telefono + ", Sueldo=" + Sueldo+" ";
     }
     
 
