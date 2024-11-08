@@ -10,16 +10,16 @@ package clubdeportivo.modelo;
  */
 public class Mantenedores extends Personal{
     int Fijo;
-
+    int sueldo;
     public Mantenedores(String nombre, String DNI, String direccion, int Telefono, int Sueldo,int Fijo) {
-        super(nombre, DNI, direccion, Telefono, Sueldo);
+        super(nombre, DNI, direccion, Telefono);
         this.Fijo=Fijo;
     }
 
 
     @Override
     public String toString() {
-        return "Mantenedores"+ super.toString() + "Fijo=" + Fijo ;
+        return "Mantenedores"+ super.toString() + "Fijo=" + Fijo+", sueldo final= "+sueldo ;
     }
     
 }

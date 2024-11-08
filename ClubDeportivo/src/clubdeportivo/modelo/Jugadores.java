@@ -12,12 +12,13 @@ public class Jugadores extends Personal{
     String posicion;
     String Fechanacimiento;
     int NumeroGoles;
-    int Plusporgol;
+    int Partidosganados;
+    int sueldo;
 
-    public Jugadores(String nombre, String DNI, String direccion, int Telefono, int Sueldo,String posicion,int Plusporgol,int NumeroGoles,String Fechanacimiento) {
-        super(nombre, DNI, direccion, Telefono, Sueldo);
+    public Jugadores(String nombre, String DNI, String direccion, int Telefono, int Sueldo,String posicion,int Partidosganados,int NumeroGoles,String Fechanacimiento) {
+        super(nombre, DNI, direccion, Telefono);
         this.posicion=posicion;
-        this.Plusporgol=Plusporgol;
+        this.Partidosganados=Partidosganados;
         this.NumeroGoles=NumeroGoles;
         this.Fechanacimiento=Fechanacimiento;
     }
@@ -26,7 +27,12 @@ public class Jugadores extends Personal{
 
     @Override
     public String toString() {
-        return "Jugadores:"+ super.toString() + "posicion=" + posicion + ", Fechanacimiento=" + Fechanacimiento + ", NumeroGoles=" + NumeroGoles + ", Plusporgol=" + Plusporgol + '}';
+        return "Jugadores:"+ super.toString() + "posicion=" + posicion + ", Fechanacimiento=" + Fechanacimiento + ", NumeroGoles=" + NumeroGoles + ", Plus por partido=" + Partidosganados+", sueldo final= "+calcularsueldo();
+    }
+    
+    
+    public int calcularsueldo(){
+    return sueldo+NumeroGoles*50+Partidosganados*300;
     }
     
     

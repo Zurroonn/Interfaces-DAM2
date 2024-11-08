@@ -10,9 +10,9 @@ package clubdeportivo.modelo;
  */
 public class Entrenadores extends Personal{
     int PartidoGanado;
-
+    int sueldo;
     public Entrenadores(String nombre, String DNI, String direccion, int Telefono, int Sueldo,int PartidoGanado) {
-        super(nombre, DNI, direccion, Telefono, Sueldo);
+        super(nombre, DNI, direccion, Telefono);
         this.PartidoGanado=PartidoGanado;
     }
 
@@ -20,9 +20,11 @@ public class Entrenadores extends Personal{
 
     @Override
     public String toString() {
-        return "Entrenadores"+ super.toString() + "PartidoGanado=" + PartidoGanado ;
+        return "Entrenadores"+ super.toString() + "PartidoGanado=" + PartidoGanado +", sueldo final= "+calcularsueldo();
     }
     
-
+    public int calcularsueldo(){
+    return sueldo+PartidoGanado*300;
+    }
     
 }

@@ -14,32 +14,24 @@ public class Personal {
     String DNI;
     String direccion;
     int Telefono;
-    int Sueldo;
-
-    public Personal(String nombre, String DNI, String direccion, int Telefono, int Sueldo) {
+    
+    
+    public Personal(String nombre, String DNI, String direccion, int Telefono) {
         this.nombre = nombre;
         this.DNI = DNI;
         this.direccion = direccion;
         this.Telefono = Telefono;
-        this.Sueldo = Sueldo;
+        
     }
 
     @Override
     public String toString() {
-        return "nombre=" + nombre + ", DNI=" + DNI + ", direccion=" + direccion + ", Telefono=" + Telefono + ", Sueldo=" + Sueldo+" ";
+        return "nombre=" + nombre + ", DNI=" + DNI + ", direccion=" + direccion + ", Telefono=" + Telefono;
     }
     
 
  
 
-
-    public int getSueldo() {
-        return Sueldo;
-    }
-
-    public void setSueldo(int Sueldo) {
-        this.Sueldo = Sueldo;
-    }
 
 
     public String getNombre() {

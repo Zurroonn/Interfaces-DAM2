@@ -813,6 +813,7 @@ public class ClubDeportivo extends javax.swing.JFrame {
         }else{
         activo="Desactivado";
         }
+        
         Directivo directivo = new Directivo(nombre, DNI, direccion, telefono, sueldo,cargo,activo);
         listaDirectivo.add(directivo);
         contenido.append(directivo).append("\n");
