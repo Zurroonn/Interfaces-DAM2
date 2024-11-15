@@ -61,7 +61,7 @@
         <Component class="javax.swing.JTree" name="arbol">
           <Properties>
             <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-              <TreeModel code="Futbol&#xa; Division1&#xa;  Real Madrid&#xa;  Barcelona&#xa;  Alaves&#xa; Division2&#xa;  A Coru&#xf1;a&#xa;  Almeria&#xa;  Zaragoza&#xa; Division3&#xa;  Zamora&#xa;  Avila&#xa;  Leon&#xa;  "/>
+              <TreeModel code="Futbol&#xa; Division1&#xa;  Real Madrid&#xa;   Juvenil&#xa;   Cadete&#xa;   Benjamin&#xa;  Barcelona&#xa;  Alaves&#xa; Division2&#xa;  A Coru&#xf1;a&#xa;  Almeria&#xa;  Zaragoza&#xa; Division3&#xa;  Zamora&#xa;  Avila&#xa;  Leon&#xa;  "/>
             </Property>
           </Properties>
           <Events>

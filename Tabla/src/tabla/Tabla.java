@@ -160,8 +160,8 @@ public class Tabla extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int [] eliminar = Tabla.getSelectedRows();
-        for (int i : eliminar) {
-            
+        for (int i= eliminar.length-1; i>=0;i--) {
+            ((DefaultTableModel)Tabla.getModel()).removeRow(eliminar[i]);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
