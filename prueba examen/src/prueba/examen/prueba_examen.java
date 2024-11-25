@@ -5,7 +5,10 @@
 package prueba.examen;
 
 
+import Ropa.Ropa;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
@@ -16,9 +19,9 @@ import javax.swing.tree.TreeNode;
  * @author Manana
  */
 public class prueba_examen extends javax.swing.JFrame {
+DefaultMutableTreeNode raiz;
+ArrayList<Ropa> prendas= new ArrayList<>();
 
-    private DefaultMutableTreeNode raiz;
-    
     /**
      * Creates new form prueba_examen
      */
@@ -174,9 +177,9 @@ public class prueba_examen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -199,6 +202,7 @@ public class prueba_examen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        DefaultTreeModel root=(DefaultTreeModel) arbol.getModel();
         String name=nombre.getText();
         String code= codigo.getText();
         String comb=(String) combo.getSelectedItem();
@@ -210,34 +214,26 @@ public class prueba_examen extends javax.swing.JFrame {
         }
         
         List<String> tallas=lista.getSelectedValuesList();
-       
+        Ropa rop= new Ropa(code,sexo,tallas);
+        prendas.add(rop);
+        DefaultMutableTreeNode division= new DefaultMutableTreeNode(comb);
+        raiz.add(division);
+        DefaultMutableTreeNode division2= new DefaultMutableTreeNode(name);
+        division.add(division2);
+        division2.add(new DefaultMutableTreeNode(rop.getCodigo()));
+        division2.add(new DefaultMutableTreeNode(rop.getSexo()));
+        division2.add(new DefaultMutableTreeNode(rop.getTallas()));
         
-       
-        
-        
-        //for (int i = 0; i < raiz.getChildCount(); i++) {
-         //   if (!raiz.getChildAt(i).equals(name)) {
-            DefaultMutableTreeNode subraiz= new DefaultMutableTreeNode(comb);
-            raiz.add(subraiz);
-            
-            subraiz.add(new DefaultMutableTreeNode(name));
-        //}else {
-            //DefaultMutableTreeNode subraiz= new DefaultMutableTreeNode(name);
-           // subraiz.add(new DefaultMutableTreeNode(comb));
-            //}
-        //}
-            
-        
-       
-        
+        root.reload();
+        JOptionPane.showMessageDialog(this, "MADRE", "La fokin cabra", DO_NOTHING_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
+private  TreeNode crearArbol(){
+    raiz= new DefaultMutableTreeNode("Ropa");
+    
+    return raiz;
+}
 
-    private TreeNode crearArbol() {
-        raiz = new DefaultMutableTreeNode("Ropa");
-
-        
-        return raiz;
-    }
+ 
     
     /**
      * @param args the command line arguments
@@ -270,6 +266,7 @@ public class prueba_examen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new prueba_examen().setVisible(true);
+                
             }
         });
     }
