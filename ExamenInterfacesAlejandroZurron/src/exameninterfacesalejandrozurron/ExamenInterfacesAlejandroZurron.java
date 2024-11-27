@@ -62,6 +62,8 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
         grupo = new javax.swing.ButtonGroup();
         panel = new javax.swing.JPanel();
+        tareas = new javax.swing.JToolBar();
+        exportar2 = new javax.swing.JButton();
         panel2 = new javax.swing.JPanel();
         nombreisbn = new javax.swing.JLabel();
         nombretitulo = new javax.swing.JLabel();
@@ -78,8 +80,6 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         año = new javax.swing.JSpinner();
         nombreaño = new javax.swing.JLabel();
         registrar = new javax.swing.JButton();
-        tareas = new javax.swing.JToolBar();
-        exportar2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -90,9 +90,27 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         exportar = new javax.swing.JMenuItem();
         vista = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Biblioteca");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        tareas.setRollover(true);
+
+        exportar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exameninterfacesalejandrozurron/exportar.png"))); // NOI18N
+        exportar2.setText("Exportar");
+        exportar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exportar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        exportar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar2ActionPerformed(evt);
+            }
+        });
+        tareas.add(exportar2);
 
         panel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -210,19 +228,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        tareas.setRollover(true);
-
-        exportar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exameninterfacesalejandrozurron/exportar.png"))); // NOI18N
-        exportar2.setText("Exportar");
-        exportar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exportar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        exportar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exportar2ActionPerformed(evt);
-            }
-        });
-        tareas.add(exportar2);
-
+        tabla.setAutoCreateRowSorter(true);
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Ciencia ficción",  new Integer(0)},
@@ -410,13 +416,13 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 }
             }
             String cont="Esta es la informacion del libro \n"
-            + "ISBN"+ISBNA+"\n"
-            + "ISBN"+tituloA+"\n"
-            + "ISBN"+autorA+"\n"
-            + "ISBN"+editorialA+"\n"
-            + "ISBN"+generoA+"\n"
-            + "ISBN"+formatoA+"\n"
-            + "ISBN"+añoA+"\n"
+            + "ISBN: "+ISBNA+"\n"
+            + "Titulo: "+tituloA+"\n"
+            + "Autor: "+autorA+"\n"
+            + "Editorial: "+editorialA+"\n"
+            + "Genero: "+generoA+"\n"
+            + "Formato: "+formatoA+"\n"
+            + "Año: "+añoA+"\n"
             ;
             JOptionPane.showMessageDialog(this, cont, "Informacion", HEIGHT);
         }
@@ -516,6 +522,14 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
     private void isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_isbnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        int res=JOptionPane.showConfirmDialog(this, "Salir", "Vas a salir", JOptionPane.YES_NO_OPTION);
+        if (res==JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
     private TreeNode crearArbol() {
         raiz = new DefaultMutableTreeNode("Biblioteca");
         division = new DefaultMutableTreeNode("Ciencia Ficción");
