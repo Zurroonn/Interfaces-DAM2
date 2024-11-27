@@ -46,7 +46,6 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         initComponents();
         autor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         isbn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        isbn.setText("");
         editorial.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         titulo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
@@ -61,7 +60,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        grupo = new javax.swing.ButtonGroup();
         panel = new javax.swing.JPanel();
         panel2 = new javax.swing.JPanel();
         nombreisbn = new javax.swing.JLabel();
@@ -80,11 +79,11 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         nombreaño = new javax.swing.JLabel();
         registrar = new javax.swing.JButton();
         tareas = new javax.swing.JToolBar();
+        exportar2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         arbol = new javax.swing.JTree(crearArbol());
-        exportar2 = new javax.swing.JButton();
         barra = new javax.swing.JMenuBar();
         archivo = new javax.swing.JMenu();
         salir = new javax.swing.JMenuItem();
@@ -121,10 +120,10 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
         genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencia ficción", "Misterio", "Poesía" }));
 
-        buttonGroup1.add(papel);
+        grupo.add(papel);
         papel.setText("Papel");
 
-        buttonGroup1.add(electronico);
+        grupo.add(electronico);
         electronico.setText("Electronico");
 
         año.setModel(new javax.swing.SpinnerNumberModel(0, null, 2024, 1));
@@ -213,6 +212,17 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
         tareas.setRollover(true);
 
+        exportar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exameninterfacesalejandrozurron/exportar.png"))); // NOI18N
+        exportar2.setText("Exportar");
+        exportar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exportar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        exportar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar2ActionPerformed(evt);
+            }
+        });
+        tareas.add(exportar2);
+
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Ciencia ficción",  new Integer(0)},
@@ -241,16 +251,6 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(arbol);
 
-        exportar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exameninterfacesalejandrozurron/exportar.png"))); // NOI18N
-        exportar2.setText("Exportar");
-        exportar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exportar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        exportar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exportar2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -258,36 +258,29 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
             .addGroup(panelLayout.createSequentialGroup()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(exportar2))
-                    .addGroup(panelLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tareas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(tareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(112, 112, 112)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(exportar2)
+                        .addComponent(tareas, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(tareas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(104, Short.MAX_VALUE))
@@ -381,8 +374,10 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
             try {
                 BufferedWriter bw= new BufferedWriter(new FileWriter(fichero.getSelectedFile()));
 
-                bw.write(contenido.toString());
-                System.out.println("contenido escrito");
+                for (Libro listalibro : listalibros) {
+                    bw.write(listalibro.autor + listalibro.editorial);
+                }
+                bw.close();
 
             } catch (IOException ex) {
                 Logger.getLogger(ExamenInterfacesAlejandroZurron.class.getName()).log(Level.SEVERE, null, ex);
@@ -430,8 +425,23 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
+        
+            editorial.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        if (isbn.getText().equalsIgnoreCase("            ") || autor.getText().equalsIgnoreCase("") || editorial.getText().equalsIgnoreCase("") || titulo.getText().equalsIgnoreCase("") || genero.getSelectedItem().equals("")) {
+        
+        
+            autor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        
+    
+
+            SwingUtilities.updateComponentTreeUI(titulo);
+        
+        
+            isbn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        
+        if (isbn.getText().isBlank() || autor.getText().equalsIgnoreCase("") || editorial.getText().equalsIgnoreCase("") || titulo.getText().equalsIgnoreCase("") || genero.getSelectedItem().equals("")) {
 
             if (editorial.getText().equalsIgnoreCase("")) {
                 editorial.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -445,7 +455,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 titulo.setBorder(BorderFactory.createLineBorder(Color.RED));
                 titulo.requestFocus();
             }
-            if (isbn.getText().equalsIgnoreCase("")) {
+            if (isbn.getText().isBlank()) {
                 isbn.setBorder(BorderFactory.createLineBorder(Color.RED));
                 isbn.requestFocus();
             }
@@ -453,26 +463,12 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 genero.setBorder(BorderFactory.createLineBorder(Color.RED));
                 genero.requestFocus();
             }
+            
             JOptionPane.showMessageDialog(this, "Tienes que rellenar todos los datos", "Advertencia", HEIGHT);
-
+            return;
         }
-        if (!editorial.getText().equals("")) {
-            editorial.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        }
-        if (!autor.getText().equals("")) {
-            autor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        }
-        if (!titulo.getText().equals("")) {
-
-            SwingUtilities.updateComponentTreeUI(titulo);
-        }
-        if (!isbn.getText().equals("")) {
-            isbn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        }
-        if (!isbn.getText().equalsIgnoreCase("            ") || !autor.getText().equalsIgnoreCase("") || !editorial.getText().equalsIgnoreCase("") || !titulo.getText().equalsIgnoreCase("") || !genero.getSelectedItem().equals("")) {
+        if (!isbn.getText().isBlank() || !autor.getText().equalsIgnoreCase("") || !editorial.getText().equalsIgnoreCase("") || !titulo.getText().equalsIgnoreCase("") || !genero.getSelectedItem().equals("")) {
             String formato = "";
             if (papel.isSelected()) {
                 formato = "papel";
@@ -512,6 +508,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
             titulo.setText("");
             año.setValue(0);
             genero.setSelectedIndex(0);
+            grupo.clearSelection();
             root.reload();
         }
     }//GEN-LAST:event_registrarActionPerformed
@@ -530,8 +527,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         
         return raiz;
     }
-    public void imagen(){
-    s}
+
     /**
      * @param args the command line arguments
      */
@@ -574,12 +570,12 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
     private javax.swing.JTextField autor;
     private javax.swing.JSpinner año;
     private javax.swing.JMenuBar barra;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField editorial;
     private javax.swing.JRadioButton electronico;
     private javax.swing.JMenuItem exportar;
     private javax.swing.JButton exportar2;
     private javax.swing.JComboBox<String> genero;
+    private javax.swing.ButtonGroup grupo;
     private javax.swing.JFormattedTextField isbn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
