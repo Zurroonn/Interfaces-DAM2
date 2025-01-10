@@ -24,7 +24,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro:"+autor+"("+año+")"+"."+titulo+"."+editorial;
+        return java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("LIBRO:")+autor+java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("(")+año+java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString(")")+java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString(".")+titulo+java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString(".")+editorial;
     }
 
     public String getISBN() {
