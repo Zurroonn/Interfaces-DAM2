@@ -91,7 +91,8 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         vista = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Biblioteca");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle"); // NOI18N
+        setTitle(bundle.getString("ExamenInterfacesAlejandroZurron.title")); // NOI18N
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -102,7 +103,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         tareas.setRollover(true);
 
         exportar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exameninterfacesalejandrozurron/exportar.png"))); // NOI18N
-        exportar2.setText("Exportar");
+        exportar2.setText(bundle.getString("ExamenInterfacesAlejandroZurron.exportar2.text")); // NOI18N
         exportar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         exportar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         exportar2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,41 +115,41 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
         panel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        nombreisbn.setText("ISBN");
+        nombreisbn.setText(bundle.getString("ExamenInterfacesAlejandroZurron.nombreisbn.text")); // NOI18N
 
-        nombretitulo.setText("Titulo");
+        nombretitulo.setText(bundle.getString("ExamenInterfacesAlejandroZurron.nombretitulo.text")); // NOI18N
 
-        nombreautor.setText("Autor");
+        nombreautor.setText(bundle.getString("ExamenInterfacesAlejandroZurron.nombreautor.text")); // NOI18N
 
-        nombreditorial.setText("Editorial");
+        nombreditorial.setText(bundle.getString("ExamenInterfacesAlejandroZurron.nombreditorial.text")); // NOI18N
 
         try {
             isbn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        isbn.setToolTipText("");
+        isbn.setToolTipText(bundle.getString("ExamenInterfacesAlejandroZurron.isbn.toolTipText")); // NOI18N
         isbn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 isbnActionPerformed(evt);
             }
         });
 
-        nombregenero.setText("Genero");
+        nombregenero.setText(bundle.getString("ExamenInterfacesAlejandroZurron.nombregenero.text")); // NOI18N
 
-        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencia ficción", "Misterio", "Poesía" }));
+        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("CIENCIA FICCIÓN"), java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("MISTERIO"), java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("POESÍA") }));
 
         grupo.add(papel);
-        papel.setText("Papel");
+        papel.setText(bundle.getString("ExamenInterfacesAlejandroZurron.papel.text")); // NOI18N
 
         grupo.add(electronico);
-        electronico.setText("Electronico");
+        electronico.setText(bundle.getString("ExamenInterfacesAlejandroZurron.electronico.text")); // NOI18N
 
         año.setModel(new javax.swing.SpinnerNumberModel(0, null, 2024, 1));
 
-        nombreaño.setText("Año");
+        nombreaño.setText(bundle.getString("ExamenInterfacesAlejandroZurron.nombreaño.text")); // NOI18N
 
-        registrar.setText("Registrar");
+        registrar.setText(bundle.getString("ExamenInterfacesAlejandroZurron.registrar.text")); // NOI18N
         registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarActionPerformed(evt);
@@ -247,7 +248,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tabla.setToolTipText("");
+        tabla.setToolTipText(bundle.getString("ExamenInterfacesAlejandroZurron.tabla.toolTipText")); // NOI18N
         jScrollPane1.setViewportView(tabla);
 
         arbol.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
@@ -273,7 +274,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,12 +290,12 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        archivo.setText("Archivo");
+        archivo.setText(bundle.getString("ExamenInterfacesAlejandroZurron.archivo.text")); // NOI18N
 
-        salir.setText("Salir");
+        salir.setText(bundle.getString("ExamenInterfacesAlejandroZurron.salir.text")); // NOI18N
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
@@ -302,7 +303,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
         });
         archivo.add(salir);
 
-        exportar.setText("Exportar");
+        exportar.setText(bundle.getString("ExamenInterfacesAlejandroZurron.exportar.text")); // NOI18N
         exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exportarActionPerformed(evt);
@@ -312,7 +313,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
         barra.add(archivo);
 
-        vista.setText("Vista");
+        vista.setText(bundle.getString("ExamenInterfacesAlejandroZurron.vista.text")); // NOI18N
         vista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 vistaMouseClicked(evt);
@@ -358,7 +359,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog(this, "Salir", "¿Estas seguro?", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("SALIR"), java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("¿ESTAS SEGURO?"), JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             this.dispose();
         }
@@ -366,7 +367,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
     private void vistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vistaMouseClicked
         // TODO add your handling code here:
-        Color color = JColorChooser.showDialog(this, "Color", Color.yellow);
+        Color color = JColorChooser.showDialog(this, java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("COLOR"), Color.yellow);
         panel.setBackground(color);
 
 
@@ -415,16 +416,16 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
                 }
             }
-            String cont="Esta es la informacion del libro \n"
-            + "ISBN: "+ISBNA+"\n"
-            + "Titulo: "+tituloA+"\n"
-            + "Autor: "+autorA+"\n"
-            + "Editorial: "+editorialA+"\n"
-            + "Genero: "+generoA+"\n"
-            + "Formato: "+formatoA+"\n"
-            + "Año: "+añoA+"\n"
+            String cont=java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("ESTA ES LA INFORMACION DEL LIBRO \n")
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("ISBN: ")+ISBNA+"\n"
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("TITULO: ")+tituloA+"\n"
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("AUTOR: ")+autorA+"\n"
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("EDITORIAL: ")+editorialA+"\n"
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("GENERO: ")+generoA+"\n"
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("FORMATO: ")+formatoA+"\n"
+            + java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("AÑO: ")+añoA+"\n"
             ;
-            JOptionPane.showMessageDialog(this, cont, "Informacion", HEIGHT);
+            JOptionPane.showMessageDialog(this, cont, java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("INFORMACION"), HEIGHT);
         }
 
     }//GEN-LAST:event_arbolValueChanged
@@ -470,17 +471,17 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
                 genero.requestFocus();
             }
             
-            JOptionPane.showMessageDialog(this, "Tienes que rellenar todos los datos", "Advertencia", HEIGHT);
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("TIENES QUE RELLENAR TODOS LOS DATOS"), java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("ADVERTENCIA"), HEIGHT);
             return;
         }
 
         if (!isbn.getText().isBlank() || !autor.getText().equalsIgnoreCase("") || !editorial.getText().equalsIgnoreCase("") || !titulo.getText().equalsIgnoreCase("") || !genero.getSelectedItem().equals("")) {
             String formato = "";
             if (papel.isSelected()) {
-                formato = "papel";
+                formato = java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("PAPEL");
             }
             if (electronico.isSelected()) {
-                formato = "electronico";
+                formato = java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("ELECTRONICO");
             }
             String gen = (String) genero.getSelectedItem();
             int añO = (Integer) año.getValue();
@@ -488,19 +489,19 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
             contenido.append(lib);
             listalibros.add(lib);
             DefaultTreeModel  root=(DefaultTreeModel) arbol.getModel();
-            if (gen.equalsIgnoreCase("Poesía")) {
+            if (gen.equalsIgnoreCase(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("POESÍA"))) {
                 cont++;
                 ((DefaultTableModel) tabla.getModel()).setValueAt(cont, 2, 1);
                 DefaultMutableTreeNode subdivision = new DefaultMutableTreeNode(lib.getTitulo());
                 division2.add(subdivision);
             }
-            if (gen.equalsIgnoreCase("Ciencia ficción")) {
+            if (gen.equalsIgnoreCase(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("CIENCIA FICCIÓN"))) {
                 cont1++;
                 ((DefaultTableModel) tabla.getModel()).setValueAt(cont1, 0, 1);
                 DefaultMutableTreeNode subdivision = new DefaultMutableTreeNode(lib.getTitulo());
                 division.add(subdivision);
             }
-            if (gen.equalsIgnoreCase("Misterio")) {
+            if (gen.equalsIgnoreCase(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("MISTERIO"))) {
                 cont2++;
                 ((DefaultTableModel) tabla.getModel()).setValueAt(cont2, 1, 1);
                 DefaultMutableTreeNode subdivision = new DefaultMutableTreeNode(lib.getTitulo());
@@ -525,16 +526,16 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        int res=JOptionPane.showConfirmDialog(this, "Salir", "Vas a salir", JOptionPane.YES_NO_OPTION);
+        int res=JOptionPane.showConfirmDialog(this, java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("SALIR"), java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("VAS A SALIR"), JOptionPane.YES_NO_OPTION);
         if (res==JOptionPane.YES_OPTION) {
             this.dispose();
         }
     }//GEN-LAST:event_formWindowClosing
     private TreeNode crearArbol() {
-        raiz = new DefaultMutableTreeNode("Biblioteca");
-        division = new DefaultMutableTreeNode("Ciencia Ficción");
-        division1 = new DefaultMutableTreeNode("Misterio");
-        division2 = new DefaultMutableTreeNode("Poesia");
+        raiz = new DefaultMutableTreeNode(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("BIBLIOTECA"));
+        division = new DefaultMutableTreeNode(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("CIENCIA FICCIÓN"));
+        division1 = new DefaultMutableTreeNode(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("MISTERIO"));
+        division2 = new DefaultMutableTreeNode(java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("POESIA"));
         raiz.add(division);
         raiz.add(division1);
         raiz.add(division2);
@@ -553,7 +554,7 @@ public class ExamenInterfacesAlejandroZurron extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("exameninterfacesalejandrozurron/Bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
