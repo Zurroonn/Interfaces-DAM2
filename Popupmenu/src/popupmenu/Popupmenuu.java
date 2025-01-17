@@ -11,6 +11,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,6 +44,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         tipografia = new javax.swing.JMenuItem();
         tipografia2 = new javax.swing.JMenuItem();
         tipografia3 = new javax.swing.JMenuItem();
+        buscar = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         area = new javax.swing.JTextArea();
 
@@ -79,9 +81,9 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         Menu.add(seleccionar);
 
-        tipo.setText("jMenu1");
+        tipo.setText("Tipografias");
 
-        tipografia.setText("tipografia");
+        tipografia.setText("1");
         tipografia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipografiaActionPerformed(evt);
@@ -89,7 +91,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         tipo.add(tipografia);
 
-        tipografia2.setText("tipografia2");
+        tipografia2.setText("2");
         tipografia2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipografia2ActionPerformed(evt);
@@ -97,7 +99,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         tipo.add(tipografia2);
 
-        tipografia3.setText("tipografia3");
+        tipografia3.setText("3");
         tipografia3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipografia3ActionPerformed(evt);
@@ -106,6 +108,14 @@ public class Popupmenuu extends javax.swing.JFrame {
         tipo.add(tipografia3);
 
         Menu.add(tipo);
+
+        buscar.setText("buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        Menu.add(buscar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,11 +183,7 @@ public class Popupmenuu extends javax.swing.JFrame {
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void tipografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipografiaActionPerformed
-        
-        area.setFont(new Font("Arial", Font.PLAIN, 14));           
-        
-        
-
+        area.setFont(new Font("Arial", Font.PLAIN, 14));                   
     }//GEN-LAST:event_tipografiaActionPerformed
 
     private void tipografia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipografia2ActionPerformed
@@ -185,8 +191,28 @@ public class Popupmenuu extends javax.swing.JFrame {
     }//GEN-LAST:event_tipografia2ActionPerformed
 
     private void tipografia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipografia3ActionPerformed
-area.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        area.setFont(new Font("Times New Roman", Font.ITALIC, 14));
     }//GEN-LAST:event_tipografia3ActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        // TODO add your handling code here:ç
+        String palabra=JOptionPane.showInputDialog(this,"Introduce palabra a buscar");
+        String texto= area.getText();
+        int posicion = texto.indexOf(palabra);
+
+        if (posicion >= 0) {
+            // Mover el cursor a la posición de la palabra encontrada
+            area.setCaretPosition(posicion);
+            area.requestFocus(); // Enfocar el JTextArea
+            JOptionPane.showMessageDialog(this, "Palabra encontrada en la posición: " + posicion);
+        } else {
+            // Mostrar mensaje si no se encuentra la palabra
+            JOptionPane.showMessageDialog(this, "Palabra no encontrada.");
+        }
+
+            
+        
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +252,7 @@ area.setFont(new Font("Times New Roman", Font.ITALIC, 14));
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu Menu;
     private javax.swing.JTextArea area;
+    private javax.swing.JMenuItem buscar;
     private javax.swing.JMenuItem copiar;
     private javax.swing.JMenuItem cortar;
     private javax.swing.JScrollPane jScrollPane1;
