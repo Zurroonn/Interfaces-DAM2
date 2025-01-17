@@ -9,7 +9,6 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.System.Logger;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JColorChooser;
@@ -48,7 +47,6 @@ public class Paintt extends javax.swing.JFrame {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, imagen.getWidth(), imagen.getHeight());
         g.dispose();
-        Borrar.setFocusable(false);
     }
 
     /**
@@ -61,27 +59,27 @@ public class Paintt extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        Pintar = new javax.swing.JButton();
-        Circulos = new javax.swing.JButton();
-        Colorr = new javax.swing.JButton();
         Guardar = new javax.swing.JButton();
         Clear = new javax.swing.JButton();
-        Borrar = new javax.swing.JButton();
-        Salir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        lienzo = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        Pintar = new javax.swing.JMenu();
+        Circulos = new javax.swing.JMenu();
+        Colorr = new javax.swing.JMenu();
+        Exportar = new javax.swing.JMenu();
+        Clear2 = new javax.swing.JMenu();
+        Borrar2 = new javax.swing.JMenu();
+        Manual = new javax.swing.JMenu();
+        Acercade = new javax.swing.JMenu();
+        Salir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                formMouseDragged(evt);
-            }
-        });
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -89,40 +87,7 @@ public class Paintt extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        Pintar.setText("Pintar");
-        Pintar.setFocusable(false);
-        Pintar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Pintar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Pintar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PintarActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(Pintar);
-
-        Circulos.setText("Circulos");
-        Circulos.setFocusable(false);
-        Circulos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Circulos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Circulos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CirculosActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(Circulos);
-
-        Colorr.setText("Colorr");
-        Colorr.setFocusable(false);
-        Colorr.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Colorr.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Colorr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ColorrActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(Colorr);
-
-        Guardar.setText("Guardar");
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/69539.png"))); // NOI18N
         Guardar.setFocusable(false);
         Guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -133,7 +98,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jToolBar1.add(Guardar);
 
-        Clear.setText("Clear");
+        Clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/7046041.png"))); // NOI18N
         Clear.setFocusable(false);
         Clear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Clear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -144,181 +109,120 @@ public class Paintt extends javax.swing.JFrame {
         });
         jToolBar1.add(Clear);
 
-        Borrar.setText("Borrar");
-        Borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Borrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BorrarActionPerformed(evt);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/732397.png"))); // NOI18N
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
+
+        getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+
+        lienzo.setBackground(new java.awt.Color(255, 255, 255));
+        lienzo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lienzoMouseDragged(evt);
             }
         });
-        jToolBar1.add(Borrar);
+        lienzo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lienzoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout lienzoLayout = new javax.swing.GroupLayout(lienzo);
+        lienzo.setLayout(lienzoLayout);
+        lienzoLayout.setHorizontalGroup(
+            lienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 581, Short.MAX_VALUE)
+        );
+        lienzoLayout.setVerticalGroup(
+            lienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 396, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(lienzo, java.awt.BorderLayout.CENTER);
+
+        Pintar.setText("Pintar");
+        Pintar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PintarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Pintar);
+
+        Circulos.setText("Circulos");
+        Circulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CirculosMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Circulos);
+
+        Colorr.setText("Color");
+        Colorr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ColorrMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Colorr);
+
+        Exportar.setText("Exportar");
+        Exportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExportarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Exportar);
+
+        Clear2.setText("Clear");
+        Clear2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Clear2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Clear2);
+
+        Borrar2.setText("Borrar");
+        Borrar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Borrar2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Borrar2);
+
+        Manual.setText("Manual");
+        Manual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ManualMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Manual);
+
+        Acercade.setText("Acerca de");
+        Acercade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AcercadeMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Acercade);
 
         Salir.setText("Salir");
-        Salir.setFocusable(false);
-        Salir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Salir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
+        Salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SalirMouseClicked(evt);
             }
         });
-        jToolBar1.add(Salir);
+        jMenuBar1.add(Salir);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(855, Short.MAX_VALUE))
-        );
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-    int toolbarHeight = jToolBar1.getHeight(); // Altura de la barra de herramientas
-    if (evt.getY() > toolbarHeight) {    
-        if (null != seleccion) // TODO add your handling code here:
-            switch (seleccion) {
-                case CIRCULOS: {
-                    Random rand = new Random();
-                    int tamano = rand.nextInt(81) + 20;
-                    Graphics gVentana = getGraphics();
-                    Graphics gImagen = imagen.getGraphics();
-                    gVentana.setColor(colorseleccionado);
-                    gImagen.setColor(colorseleccionado);
-                    int x = evt.getX() - TAMANO_CIRCULO / 2;
-                    int y = evt.getY() - TAMANO_CIRCULO / 2;
-                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    break;
-                }
-                case PINTAR:
-                    if (anterior == null) {
-                        anterior = evt.getPoint();
-                    } else {
-                        Graphics gVentana = getGraphics();
-                        Graphics gImagen = imagen.getGraphics();
-                        gVentana.setColor(colorseleccionado);
-                        gImagen.setColor(colorseleccionado);
-                        gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-                        gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-
-                        anterior = evt.getPoint();
-
-                        gImagen.dispose();
-                    }
-                    break;
-                case BORRAR: {
-                    Random rand = new Random();
-                    int tamano = rand.nextInt(81) + 20;
-                    Graphics gVentana = getGraphics();
-                    Graphics gImagen = imagen.getGraphics();
-                    gVentana.setColor(Color.WHITE);
-                    gImagen.setColor(Color.white);
-                    int x = evt.getX() - TAMANO_CIRCULO / 2;
-                    int y = evt.getY() - TAMANO_CIRCULO / 2;
-
-                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    break;
-                }
-                default:
-                    break;
-            }
-    }
-    }//GEN-LAST:event_formMouseClicked
-
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-    int toolbarHeight = jToolBar1.getHeight(); // Altura de la barra de herramientas
-    if (evt.getY() > toolbarHeight) {  
-        if (null != seleccion) // TODO add your handling code here:
-            switch (seleccion) {
-                case CIRCULOS: {
-                    Random rand = new Random();
-                    int tamano = rand.nextInt(81) + 20;
-                    Graphics gVentana = getGraphics();
-                    Graphics gImagen = imagen.getGraphics();
-                    gVentana.setColor(colorseleccionado);
-                    gImagen.setColor(colorseleccionado);
-                    int x = evt.getX() - TAMANO_CIRCULO / 2;
-                    int y = evt.getY() - TAMANO_CIRCULO / 2;
-
-                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    break;
-                }
-                case PINTAR:
-                    if (anterior == null) {
-                        anterior = evt.getPoint();
-                    } else {
-                        Graphics gVentana = getGraphics();
-                        Graphics gImagen = imagen.getGraphics();
-                        gVentana.setColor(colorseleccionado);
-                        gImagen.setColor(colorseleccionado);
-
-                        gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-                        gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-
-                        anterior = evt.getPoint();
-
-                        gImagen.dispose();
-                    }
-                    break;
-                case BORRAR: {
-                    Random rand = new Random();
-                    int tamano = rand.nextInt(81) + 20;
-                    Graphics gVentana = getGraphics();
-                    Graphics gImagen = imagen.getGraphics();
-                    gVentana.setColor(Color.WHITE);
-                    gImagen.setColor(Color.white);
-                    int x = evt.getX() - TAMANO_CIRCULO / 2;
-                    int y = evt.getY() - TAMANO_CIRCULO / 2;
-
-                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    break;
-                }
-                default:
-                    break;
-            }
-    }
-    }//GEN-LAST:event_formMouseDragged
-
-    private void PintarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PintarActionPerformed
-        // TODO add your handling code here:
-        seleccion = Opciones.PINTAR;
-    }//GEN-LAST:event_PintarActionPerformed
-
-    private void CirculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CirculosActionPerformed
-        // TODO add your handling code here:
-        seleccion = Opciones.CIRCULOS;
-    }//GEN-LAST:event_CirculosActionPerformed
-
-    private void ColorrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorrActionPerformed
-        // TODO add your handling code here:
-        Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
-        Graphics gVentana = getGraphics();
-        Graphics gImagen = imagen.getGraphics();
-        if (opcion != null) {
-            colorseleccionado = opcion;
-        }
-    }//GEN-LAST:event_ColorrActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        imagen = new BufferedImage(getContentPane().getWidth(), getContentPane().getHeight(), BufferedImage.TYPE_INT_RGB);
+        imagen = new BufferedImage(lienzo.getWidth(), lienzo.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics gImagen = imagen.getGraphics();
         gImagen.setColor(Color.WHITE);
         gImagen.fillRect(0, 0, imagen.getWidth(), imagen.getHeight());
@@ -348,15 +252,203 @@ public class Paintt extends javax.swing.JFrame {
         repaint();
     }//GEN-LAST:event_ClearActionPerformed
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_SalirActionPerformed
+                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+            JFileChooser dialogoArch = new JFileChooser();
+            if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
+                File arch = dialogoArch.getSelectedFile();
+                try {
+                    ImageIO.write(imagen, "png", arch);
+                } catch (IOException ex) {
+                }
+            }
+        }
 
-    private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
+    }//GEN-LAST:event_formWindowClosing
+
+    private void PintarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PintarMouseClicked
+        // TODO add your handling code here:
+        seleccion = Opciones.PINTAR;
+    }//GEN-LAST:event_PintarMouseClicked
+
+    private void CirculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CirculosMouseClicked
+        // TODO add your handling code here:
+        seleccion = Opciones.CIRCULOS;
+    }//GEN-LAST:event_CirculosMouseClicked
+
+    private void ColorrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ColorrMouseClicked
+        // TODO add your handling code here:
+         Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        Graphics gVentana = getGraphics();
+        Graphics gImagen = imagen.getGraphics();
+        if (opcion != null) {
+            colorseleccionado = opcion;
+        }
+    }//GEN-LAST:event_ColorrMouseClicked
+
+    private void ExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExportarMouseClicked
+        // TODO add your handling code here:
+                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+            JFileChooser dialogoArch = new JFileChooser();
+            if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
+                File arch = dialogoArch.getSelectedFile();
+                try {
+                    ImageIO.write(imagen, "png", arch);
+                } catch (IOException ex) {
+                }
+            }
+        }
+    }//GEN-LAST:event_ExportarMouseClicked
+
+    private void Clear2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Clear2MouseClicked
+        // TODO add your handling code here:
+                imagen = new BufferedImage(lienzo.getWidth(), lienzo.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics gImagen = imagen.getGraphics();
+        gImagen.setColor(Color.WHITE);
+        gImagen.fillRect(0, 0, imagen.getWidth(), imagen.getHeight());
+        repaint();
+    }//GEN-LAST:event_Clear2MouseClicked
+
+    private void Borrar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Borrar2MouseClicked
         // TODO add your handling code here:
         seleccion = Opciones.BORRAR;
-    }//GEN-LAST:event_BorrarActionPerformed
+    }//GEN-LAST:event_Borrar2MouseClicked
+
+    private void ManualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManualMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ManualMouseClicked
+
+    private void AcercadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcercadeMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showInputDialog(this, "El autor de esto es muy inteligente");
+    }//GEN-LAST:event_AcercadeMouseClicked
+
+    private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
+        // TODO add your handling code here:
+                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+            JFileChooser dialogoArch = new JFileChooser();
+            if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
+                File arch = dialogoArch.getSelectedFile();
+                try {
+                    ImageIO.write(imagen, "png", arch);
+                } catch (IOException ex) {
+                }
+            }
+        }
+
+    }//GEN-LAST:event_SalirMouseClicked
+
+    private void lienzoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzoMouseDragged
+        // TODO add your handling code here:
+             if (null != seleccion) // TODO add your handling code here:
+            switch (seleccion) {
+                case CIRCULOS: {
+                    Random rand = new Random();
+                    int tamano = rand.nextInt(81) + 20;
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+                    gVentana.setColor(colorseleccionado);
+                    gImagen.setColor(colorseleccionado);
+                    int x = evt.getX() - TAMANO_CIRCULO / 2;
+                    int y = evt.getY() - TAMANO_CIRCULO / 2;
+
+                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    break;
+                }
+                case PINTAR:
+                    if (anterior == null) {
+                        anterior = evt.getPoint();
+                    } else {
+                        Graphics gVentana = lienzo.getGraphics();
+                        Graphics gImagen = imagen.getGraphics();
+                        gVentana.setColor(colorseleccionado);
+                        gImagen.setColor(colorseleccionado);
+
+                        gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
+                        gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
+
+                        anterior = evt.getPoint();
+
+                        gImagen.dispose();
+                    }
+                    break;
+                case BORRAR: {
+                    Random rand = new Random();
+                    int tamano = rand.nextInt(81) + 20;
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+                    gVentana.setColor(Color.WHITE);
+                    gImagen.setColor(Color.white);
+                    int x = evt.getX() - TAMANO_CIRCULO / 2;
+                    int y = evt.getY() - TAMANO_CIRCULO / 2;
+
+                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    break;
+                }
+                default:
+                    break;
+            }
+   
+    }//GEN-LAST:event_lienzoMouseDragged
+
+    private void lienzoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzoMouseClicked
+        // TODO add your handling code here:
+             if (null != seleccion) // TODO add your handling code here:
+            switch (seleccion) {
+                case CIRCULOS: {
+                    Random rand = new Random();
+                    int tamano = rand.nextInt(81) + 20;
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+                    gVentana.setColor(colorseleccionado);
+                    gImagen.setColor(colorseleccionado);
+                    int x = evt.getX() - TAMANO_CIRCULO / 2;
+                    int y = evt.getY() - TAMANO_CIRCULO / 2;
+
+                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    break;
+                }
+                case PINTAR:
+                    if (anterior == null) {
+                        anterior = evt.getPoint();
+                    } else {
+                        Graphics gVentana = lienzo.getGraphics();
+                        Graphics gImagen = imagen.getGraphics();
+                        gVentana.setColor(colorseleccionado);
+                        gImagen.setColor(colorseleccionado);
+
+                        gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
+                        gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
+
+                        anterior = evt.getPoint();
+
+                        gImagen.dispose();
+                    }
+                    break;
+                case BORRAR: {
+                    Random rand = new Random();
+                    int tamano = rand.nextInt(81) + 20;
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+                    gVentana.setColor(Color.WHITE);
+                    gImagen.setColor(Color.white);
+                    int x = evt.getX() - TAMANO_CIRCULO / 2;
+                    int y = evt.getY() - TAMANO_CIRCULO / 2;
+
+                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    break;
+                }
+                default:
+                    break;
+            }
+   
+    }//GEN-LAST:event_lienzoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -394,13 +486,20 @@ public class Paintt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Borrar;
-    private javax.swing.JButton Circulos;
+    private javax.swing.JMenu Acercade;
+    private javax.swing.JMenu Borrar2;
+    private javax.swing.JMenu Circulos;
     private javax.swing.JButton Clear;
-    private javax.swing.JButton Colorr;
+    private javax.swing.JMenu Clear2;
+    private javax.swing.JMenu Colorr;
+    private javax.swing.JMenu Exportar;
     private javax.swing.JButton Guardar;
-    private javax.swing.JButton Pintar;
-    private javax.swing.JButton Salir;
+    private javax.swing.JMenu Manual;
+    private javax.swing.JMenu Pintar;
+    private javax.swing.JMenu Salir;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JPanel lienzo;
     // End of variables declaration//GEN-END:variables
 }
