@@ -5,7 +5,10 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,18 +24,24 @@ import javax.swing.JOptionPane;
  */
 public class Paintt extends javax.swing.JFrame {
 
+    private Point inicio;  // Punto inicial al presionar el ratón
+    private Point fin;     // Punto final al soltar el ratón
+
     enum Opciones {
         PINTAR,
         CIRCULOS,
         NADA,
-        BORRAR
-
+        BORRAR,
+        GRAFITI,
+        RECTANGULOS,
+        OVALOS
     }
     Opciones seleccion = Opciones.NADA;
 
     private BufferedImage imagen;
     private Point anterior = null;
     private Color colorseleccionado = Color.BLACK;
+    private Color colorsecundario = Color.BLACK;
     private static final int TAMANO_CIRCULO = 50;
 
     /**
@@ -62,7 +71,14 @@ public class Paintt extends javax.swing.JFrame {
         Guardar = new javax.swing.JButton();
         Clear = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        color = new javax.swing.JButton();
+        rectangulo = new javax.swing.JButton();
+        ovalo = new javax.swing.JButton();
+        grafiti = new javax.swing.JButton();
         lienzo = new javax.swing.JPanel();
+        lapiz = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Pintar = new javax.swing.JMenu();
         Circulos = new javax.swing.JMenu();
@@ -117,6 +133,34 @@ public class Paintt extends javax.swing.JFrame {
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
+        color.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png-transparent-color-wheel-color-scheme-complementary-colors-others-watercolor-painting-miscellaneous-spiral-thumbnail.png"))); // NOI18N
+        color.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorActionPerformed(evt);
+            }
+        });
+
+        rectangulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png-clipart-laptop-rectangle-drawing-computer-geometry-rectangulo-angle-text-thumbnail.png"))); // NOI18N
+        rectangulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rectanguloActionPerformed(evt);
+            }
+        });
+
+        ovalo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png-clipart-oval-others-miscellaneous-black-thumbnail.png"))); // NOI18N
+        ovalo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ovaloActionPerformed(evt);
+            }
+        });
+
+        grafiti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/863505.png"))); // NOI18N
+        grafiti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grafitiActionPerformed(evt);
+            }
+        });
+
         lienzo.setBackground(new java.awt.Color(255, 255, 255));
         lienzo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -133,14 +177,75 @@ public class Paintt extends javax.swing.JFrame {
         lienzo.setLayout(lienzoLayout);
         lienzoLayout.setHorizontalGroup(
             lienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 579, Short.MAX_VALUE)
         );
         lienzoLayout.setVerticalGroup(
             lienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
-        getContentPane().add(lienzo, java.awt.BorderLayout.CENTER);
+        lapiz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png-clipart-colored-pencil-nice-angle-pencil.png"))); // NOI18N
+        lapiz.setIconTextGap(0);
+        lapiz.setMinimumSize(null);
+        lapiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lapizActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rectangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(color, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ovalo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(grafiti, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lienzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lapiz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(color)
+                .addGap(18, 18, 18)
+                .addComponent(rectangulo)
+                .addGap(18, 18, 18)
+                .addComponent(ovalo)
+                .addGap(18, 18, 18)
+                .addComponent(grafiti)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lienzo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_END);
 
         Pintar.setText("Pintar");
         Pintar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -254,7 +359,7 @@ public class Paintt extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-                if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
@@ -279,17 +384,19 @@ public class Paintt extends javax.swing.JFrame {
 
     private void ColorrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ColorrMouseClicked
         // TODO add your handling code here:
-         Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
-        Graphics gVentana = getGraphics();
-        Graphics gImagen = imagen.getGraphics();
+        Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
         if (opcion != null) {
             colorseleccionado = opcion;
+        }
+        Color opcion2 = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        if (opcion != null) {
+            colorsecundario = opcion2;
         }
     }//GEN-LAST:event_ColorrMouseClicked
 
     private void ExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExportarMouseClicked
         // TODO add your handling code here:
-                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
@@ -303,7 +410,7 @@ public class Paintt extends javax.swing.JFrame {
 
     private void Clear2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Clear2MouseClicked
         // TODO add your handling code here:
-                imagen = new BufferedImage(lienzo.getWidth(), lienzo.getHeight(), BufferedImage.TYPE_INT_RGB);
+        imagen = new BufferedImage(lienzo.getWidth(), lienzo.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics gImagen = imagen.getGraphics();
         gImagen.setColor(Color.WHITE);
         gImagen.fillRect(0, 0, imagen.getWidth(), imagen.getHeight());
@@ -327,7 +434,7 @@ public class Paintt extends javax.swing.JFrame {
 
     private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
         // TODO add your handling code here:
-                        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
@@ -340,64 +447,10 @@ public class Paintt extends javax.swing.JFrame {
 
     }//GEN-LAST:event_SalirMouseClicked
 
-    private void lienzoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzoMouseDragged
-        // TODO add your handling code here:
-             if (null != seleccion) // TODO add your handling code here:
-            switch (seleccion) {
-                case CIRCULOS: {
-                    Random rand = new Random();
-                    int tamano = rand.nextInt(81) + 20;
-                    Graphics gVentana = lienzo.getGraphics();
-                    Graphics gImagen = imagen.getGraphics();
-                    gVentana.setColor(colorseleccionado);
-                    gImagen.setColor(colorseleccionado);
-                    int x = evt.getX() - TAMANO_CIRCULO / 2;
-                    int y = evt.getY() - TAMANO_CIRCULO / 2;
-
-                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    break;
-                }
-                case PINTAR:
-                    if (anterior == null) {
-                        anterior = evt.getPoint();
-                    } else {
-                        Graphics gVentana = lienzo.getGraphics();
-                        Graphics gImagen = imagen.getGraphics();
-                        gVentana.setColor(colorseleccionado);
-                        gImagen.setColor(colorseleccionado);
-
-                        gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-                        gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-
-                        anterior = evt.getPoint();
-
-                        gImagen.dispose();
-                    }
-                    break;
-                case BORRAR: {
-                    Random rand = new Random();
-                    int tamano = rand.nextInt(81) + 20;
-                    Graphics gVentana = lienzo.getGraphics();
-                    Graphics gImagen = imagen.getGraphics();
-                    gVentana.setColor(Color.WHITE);
-                    gImagen.setColor(Color.white);
-                    int x = evt.getX() - TAMANO_CIRCULO / 2;
-                    int y = evt.getY() - TAMANO_CIRCULO / 2;
-
-                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
-                    break;
-                }
-                default:
-                    break;
-            }
-   
-    }//GEN-LAST:event_lienzoMouseDragged
-
     private void lienzoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzoMouseClicked
         // TODO add your handling code here:
-             if (null != seleccion) // TODO add your handling code here:
+        if (null != seleccion) // TODO add your handling code here:
+        {
             switch (seleccion) {
                 case CIRCULOS: {
                     Random rand = new Random();
@@ -444,11 +497,178 @@ public class Paintt extends javax.swing.JFrame {
                     gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
                     break;
                 }
+                case GRAFITI: {
+                    Random random = new Random();
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+
+                    int cantidad = 20; // Mayor cantidad de puntos para un grafiti más disperso
+                    int maxRadio = 30; // Ámbito de dispersión
+                    for (int i = 0; i < cantidad; i++) {
+                        int radio = random.nextInt(10) + 5; // Tamaño variable de cada punto
+                        int offsetX = random.nextInt(maxRadio * 2 + 1) - maxRadio;
+                        int offsetY = random.nextInt(maxRadio * 2 + 1) - maxRadio;
+                        int x = evt.getX() + offsetX;
+                        int y = evt.getY() + offsetY;
+
+                        // Evitar salir del área del lienzo
+                        if (x >= 0 && x + radio < imagen.getWidth() && y >= 0 && y + radio < imagen.getHeight()) {
+                            gVentana.setColor(colorseleccionado); // Color principal
+                            gVentana.fillOval(x, y, radio, radio);
+                            gImagen.setColor(colorseleccionado);
+                            gImagen.fillOval(x, y, radio, radio);
+                        }
+                    }
+
+                    gImagen.dispose();
+                    break;
+                }
+
+                case OVALOS: {
+                    
+
+                           
+                    break;
+                }
+
+                case RECTANGULOS: {
+                    
+                    break;
+                }
+
                 default:
                     break;
             }
-   
+        }
+
     }//GEN-LAST:event_lienzoMouseClicked
+
+    private void lienzoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzoMouseDragged
+        // TODO add your handling code here:
+        if (null != seleccion) // TODO add your handling code here:
+        {
+            switch (seleccion) {
+                case CIRCULOS: {
+                    Random rand = new Random();
+                    int tamano = rand.nextInt(81) + 20;
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+                    gVentana.setColor(colorseleccionado);
+                    gImagen.setColor(colorseleccionado);
+                    int x = evt.getX() - TAMANO_CIRCULO / 2;
+                    int y = evt.getY() - TAMANO_CIRCULO / 2;
+
+                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    break;
+                }
+                case PINTAR:
+                    if (anterior == null) {
+                        anterior = evt.getPoint();
+                    } else {
+                        Graphics gVentana = lienzo.getGraphics();
+                        Graphics gImagen = imagen.getGraphics();
+                        gVentana.setColor(colorseleccionado);
+                        gImagen.setColor(colorseleccionado);
+
+                        gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
+                        gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
+
+                        anterior = evt.getPoint();
+
+                        gImagen.dispose();
+                    }
+                    break;
+                case BORRAR: {
+                    Random rand = new Random();
+                    int tamano = rand.nextInt(81) + 20;
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+                    gVentana.setColor(Color.WHITE);
+                    gImagen.setColor(Color.white);
+                    int x = evt.getX() - TAMANO_CIRCULO / 2;
+                    int y = evt.getY() - TAMANO_CIRCULO / 2;
+
+                    gVentana.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    gImagen.fillOval(x, y, TAMANO_CIRCULO, TAMANO_CIRCULO);
+                    break;
+                }
+                case GRAFITI: {
+                    Random random = new Random();
+                    Graphics gVentana = lienzo.getGraphics();
+                    Graphics gImagen = imagen.getGraphics();
+
+                    int cantidad = 20; // Mayor cantidad de puntos para un grafiti más disperso
+                    int maxRadio = 30; // Ámbito de dispersión
+                    for (int i = 0; i < cantidad; i++) {
+                        int radio = random.nextInt(10) + 5; // Tamaño variable de cada punto
+                        int offsetX = random.nextInt(maxRadio * 2 + 1) - maxRadio;
+                        int offsetY = random.nextInt(maxRadio * 2 + 1) - maxRadio;
+                        int x = evt.getX() + offsetX;
+                        int y = evt.getY() + offsetY;
+
+                        // Evitar salir del área del lienzo
+                        if (x >= 0 && x + radio < imagen.getWidth() && y >= 0 && y + radio < imagen.getHeight()) {
+                            gVentana.setColor(colorseleccionado); // Color principal
+                            gVentana.fillOval(x, y, radio, radio);
+                            gImagen.setColor(colorseleccionado);
+                            gImagen.fillOval(x, y, radio, radio);
+                        }
+                    }
+
+                    gImagen.dispose();
+                    break;
+                }
+
+                case OVALOS: {
+                    
+                    break;
+                }
+
+                case RECTANGULOS: {
+                    
+                       
+                    break;
+                }
+
+                default:
+                    break;
+            }
+        }
+
+    }//GEN-LAST:event_lienzoMouseDragged
+
+    private void grafitiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafitiActionPerformed
+        // TODO add your handling code here:
+        seleccion = Opciones.GRAFITI;
+    }//GEN-LAST:event_grafitiActionPerformed
+
+    private void lapizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lapizActionPerformed
+        // TODO add your handling code here:
+        seleccion = Opciones.PINTAR;
+    }//GEN-LAST:event_lapizActionPerformed
+
+    private void colorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorActionPerformed
+        // TODO add your handling code here:
+        Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        if (opcion != null) {
+            colorseleccionado = opcion;
+        }
+        Color opcion2 = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        if (opcion != null) {
+            colorsecundario = opcion2;
+        }
+    }//GEN-LAST:event_colorActionPerformed
+
+    private void rectanguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rectanguloActionPerformed
+        // TODO add your handling code here:
+        seleccion = Opciones.RECTANGULOS;
+    }//GEN-LAST:event_rectanguloActionPerformed
+
+    private void ovaloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ovaloActionPerformed
+        // TODO add your handling code here:
+        seleccion = Opciones.OVALOS;
+    }//GEN-LAST:event_ovaloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,9 +717,16 @@ public class Paintt extends javax.swing.JFrame {
     private javax.swing.JMenu Manual;
     private javax.swing.JMenu Pintar;
     private javax.swing.JMenu Salir;
+    private javax.swing.JButton color;
+    private javax.swing.JButton grafiti;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton lapiz;
     private javax.swing.JPanel lienzo;
+    private javax.swing.JButton ovalo;
+    private javax.swing.JButton rectangulo;
     // End of variables declaration//GEN-END:variables
 }
