@@ -1,10 +1,13 @@
+package popupmenu;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package popupmenu;
+
 
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -18,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Manana
  */
 public class Popupmenuu extends javax.swing.JFrame {
-
+private Point puntoPopup;
     /**
      * Creates new form Popupmenuu
      */
@@ -45,11 +48,16 @@ public class Popupmenuu extends javax.swing.JFrame {
         tipografia2 = new javax.swing.JMenuItem();
         tipografia3 = new javax.swing.JMenuItem();
         buscar = new javax.swing.JMenuItem();
+        Menu2 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         area = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
-        copiar.setText("copiar");
-        copiar.setToolTipText("");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("popupmenu/Bundle"); // NOI18N
+        copiar.setText(bundle.getString("Popupmenuu.copiar.text")); // NOI18N
+        copiar.setToolTipText(bundle.getString("Popupmenuu.copiar.toolTipText")); // NOI18N
         copiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 copiarActionPerformed(evt);
@@ -57,7 +65,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         Menu.add(copiar);
 
-        cortar.setText("cortar");
+        cortar.setText(bundle.getString("Popupmenuu.cortar.text")); // NOI18N
         cortar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cortarActionPerformed(evt);
@@ -65,7 +73,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         Menu.add(cortar);
 
-        pegar.setText("pegar");
+        pegar.setText(bundle.getString("Popupmenuu.pegar.text")); // NOI18N
         pegar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pegarActionPerformed(evt);
@@ -73,7 +81,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         Menu.add(pegar);
 
-        seleccionar.setText("seleccionar");
+        seleccionar.setText(bundle.getString("Popupmenuu.seleccionar.text")); // NOI18N
         seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionarActionPerformed(evt);
@@ -81,9 +89,9 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         Menu.add(seleccionar);
 
-        tipo.setText("Tipografias");
+        tipo.setText(bundle.getString("Popupmenuu.tipo.text")); // NOI18N
 
-        tipografia.setText("1");
+        tipografia.setText(bundle.getString("Popupmenuu.tipografia.text")); // NOI18N
         tipografia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipografiaActionPerformed(evt);
@@ -91,7 +99,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         tipo.add(tipografia);
 
-        tipografia2.setText("2");
+        tipografia2.setText(bundle.getString("Popupmenuu.tipografia2.text")); // NOI18N
         tipografia2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipografia2ActionPerformed(evt);
@@ -99,7 +107,7 @@ public class Popupmenuu extends javax.swing.JFrame {
         });
         tipo.add(tipografia2);
 
-        tipografia3.setText("3");
+        tipografia3.setText(bundle.getString("Popupmenuu.tipografia3.text")); // NOI18N
         tipografia3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipografia3ActionPerformed(evt);
@@ -109,13 +117,16 @@ public class Popupmenuu extends javax.swing.JFrame {
 
         Menu.add(tipo);
 
-        buscar.setText("buscar");
+        buscar.setText(bundle.getString("Popupmenuu.buscar.text")); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
             }
         });
         Menu.add(buscar);
+
+        jMenuItem1.setText(bundle.getString("Popupmenuu.jMenuItem1.text")); // NOI18N
+        Menu2.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,21 +135,46 @@ public class Popupmenuu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(area);
         area.setComponentPopupMenu(Menu);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"e", "d", "w", "w"},
+                {"w", "f", "w", null},
+                {"wf", "w", "w", "ee"},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        jTable1.setComponentPopupMenu(Menu2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(134, 134, 134)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,20 +219,20 @@ public class Popupmenuu extends javax.swing.JFrame {
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void tipografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipografiaActionPerformed
-        area.setFont(new Font("Arial", Font.PLAIN, 14));                   
+        area.setFont(new Font(java.util.ResourceBundle.getBundle("popupmenu/Bundle").getString("ARIAL"), Font.PLAIN, 14));                   
     }//GEN-LAST:event_tipografiaActionPerformed
 
     private void tipografia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipografia2ActionPerformed
-        area.setFont(new Font("Courier New", Font.BOLD, 16));
+        area.setFont(new Font(java.util.ResourceBundle.getBundle("popupmenu/Bundle").getString("COURIER NEW"), Font.BOLD, 16));
     }//GEN-LAST:event_tipografia2ActionPerformed
 
     private void tipografia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipografia3ActionPerformed
-        area.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        area.setFont(new Font(java.util.ResourceBundle.getBundle("popupmenu/Bundle").getString("TIMES NEW ROMAN"), Font.ITALIC, 14));
     }//GEN-LAST:event_tipografia3ActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:ç
-        String palabra=JOptionPane.showInputDialog(this,"Introduce palabra a buscar");
+        String palabra=JOptionPane.showInputDialog(this,java.util.ResourceBundle.getBundle("popupmenu/Bundle").getString("INTRODUCE PALABRA A BUSCAR"));
         String texto= area.getText();
         int posicion = texto.indexOf(palabra);
 
@@ -204,15 +240,20 @@ public class Popupmenuu extends javax.swing.JFrame {
             // Mover el cursor a la posición de la palabra encontrada
             area.setCaretPosition(posicion);
             area.requestFocus(); // Enfocar el JTextArea
-            JOptionPane.showMessageDialog(this, "Palabra encontrada en la posición: " + posicion);
+            JOptionPane.showMessageDialog(this, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("popupmenu/Bundle").getString("PALABRA ENCONTRADA EN LA POSICIÓN: {0}"), new Object[] {posicion}));
         } else {
             // Mostrar mensaje si no se encuentra la palabra
-            JOptionPane.showMessageDialog(this, "Palabra no encontrada.");
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("popupmenu/Bundle").getString("PALABRA NO ENCONTRADA."));
         }
 
             
         
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+        // TODO add your handling code here:
+        puntoPopup=evt.getPoint();
+    }//GEN-LAST:event_jTable1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -251,11 +292,15 @@ public class Popupmenuu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu Menu;
+    private javax.swing.JPopupMenu Menu2;
     private javax.swing.JTextArea area;
     private javax.swing.JMenuItem buscar;
     private javax.swing.JMenuItem copiar;
     private javax.swing.JMenuItem cortar;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JMenuItem pegar;
     private javax.swing.JMenuItem seleccionar;
     private javax.swing.JMenu tipo;

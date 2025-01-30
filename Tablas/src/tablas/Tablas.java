@@ -13,6 +13,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +33,7 @@ public class Tablas extends javax.swing.JFrame {
      */
     public Tablas() {
         initComponents();
-        
+        jTable1.getColumnModel().getColumn(1).setCellEditor( new DefaultCellEditor( new JComboBox<>(new String []{"1","2","3"}) ) );
     }
 
     /**
@@ -151,18 +155,22 @@ public class Tablas extends javax.swing.JFrame {
     }//GEN-LAST:event_SeleccionarActionPerformed
 
     private void ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarActionPerformed
-        
+        JFileChooser fichero= new JFileChooser();
+        int resp= fichero.showSaveDialog(this);
         try {
             // TODO add your handling code here:
             int [] row=jTable1.getSelectedRows();
             StringBuilder contenido= new StringBuilder();
             for (int i : row) {
                 contenido.append(jTable1.getModel().getValueAt(i, 0));
-                contenido.append(jTable1.getModel().getValueAt(i, 1)); 
+                contenido.append("-");
+                contenido.append(jTable1.getModel().getValueAt(i, 1));
+                contenido.append("-");
                 contenido.append(jTable1.getModel().getValueAt(i, 2)); 
+                contenido.append("-");
                 contenido.append(jTable1.getModel().getValueAt(i, 3)); 
             }
-            BufferedWriter bw = new BufferedWriter(new FileWriter("Equipos.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(fichero.getSelectedFile()));
             bw.write(contenido.toString()+"\n");                                    
             bw.close();
         } catch (IOException ex) {
