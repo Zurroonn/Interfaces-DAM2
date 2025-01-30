@@ -247,7 +247,8 @@ public class Paintt extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_END);
 
-        Pintar.setText("Pintar");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle"); // NOI18N
+        Pintar.setText(bundle.getString("Paintt.Pintar.text")); // NOI18N
         Pintar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PintarMouseClicked(evt);
@@ -255,7 +256,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Pintar);
 
-        Circulos.setText("Circulos");
+        Circulos.setText(bundle.getString("Paintt.Circulos.text")); // NOI18N
         Circulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CirculosMouseClicked(evt);
@@ -263,7 +264,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Circulos);
 
-        Colorr.setText("Color");
+        Colorr.setText(bundle.getString("Paintt.Colorr.text")); // NOI18N
         Colorr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ColorrMouseClicked(evt);
@@ -271,7 +272,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Colorr);
 
-        Exportar.setText("Exportar");
+        Exportar.setText(bundle.getString("Paintt.Exportar.text")); // NOI18N
         Exportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ExportarMouseClicked(evt);
@@ -279,7 +280,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Exportar);
 
-        Clear2.setText("Clear");
+        Clear2.setText(bundle.getString("Paintt.Clear2.text")); // NOI18N
         Clear2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Clear2MouseClicked(evt);
@@ -287,7 +288,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Clear2);
 
-        Borrar2.setText("Borrar");
+        Borrar2.setText(bundle.getString("Paintt.Borrar2.text")); // NOI18N
         Borrar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Borrar2MouseClicked(evt);
@@ -295,7 +296,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Borrar2);
 
-        Manual.setText("Manual");
+        Manual.setText(bundle.getString("Paintt.Manual.text")); // NOI18N
         Manual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ManualMouseClicked(evt);
@@ -303,7 +304,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Manual);
 
-        Acercade.setText("Acerca de");
+        Acercade.setText(bundle.getString("Paintt.Acercade.text")); // NOI18N
         Acercade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AcercadeMouseClicked(evt);
@@ -311,7 +312,7 @@ public class Paintt extends javax.swing.JFrame {
         });
         jMenuBar1.add(Acercade);
 
-        Salir.setText("Salir");
+        Salir.setText(bundle.getString("Paintt.Salir.text")); // NOI18N
         Salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SalirMouseClicked(evt);
@@ -336,12 +337,12 @@ public class Paintt extends javax.swing.JFrame {
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         // TODO add your handling code here:
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("¿DESEA GUARDAR LA IMAGEN ?"), java.util.ResourceBundle.getBundle("Bundle").getString("GUARDAR"), JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
                 try {
-                    ImageIO.write(imagen, "png", arch);
+                    ImageIO.write(imagen, java.util.ResourceBundle.getBundle("Bundle").getString("PNG"), arch);
                 } catch (IOException ex) {
                 }
             }
@@ -359,12 +360,12 @@ public class Paintt extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("¿DESEA GUARDAR LA IMAGEN ?"), java.util.ResourceBundle.getBundle("Bundle").getString("GUARDAR"), JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
                 try {
-                    ImageIO.write(imagen, "png", arch);
+                    ImageIO.write(imagen, java.util.ResourceBundle.getBundle("Bundle").getString("PNG"), arch);
                 } catch (IOException ex) {
                 }
             }
@@ -384,11 +385,11 @@ public class Paintt extends javax.swing.JFrame {
 
     private void ColorrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ColorrMouseClicked
         // TODO add your handling code here:
-        Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        Color opcion = JColorChooser.showDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("ELIGE"), Color.yellow);
         if (opcion != null) {
             colorseleccionado = opcion;
         }
-        Color opcion2 = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        Color opcion2 = JColorChooser.showDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("ELIGE"), Color.yellow);
         if (opcion != null) {
             colorsecundario = opcion2;
         }
@@ -396,12 +397,12 @@ public class Paintt extends javax.swing.JFrame {
 
     private void ExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExportarMouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("¿DESEA GUARDAR LA IMAGEN ?"), java.util.ResourceBundle.getBundle("Bundle").getString("GUARDAR"), JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
                 try {
-                    ImageIO.write(imagen, "png", arch);
+                    ImageIO.write(imagen, java.util.ResourceBundle.getBundle("Bundle").getString("PNG"), arch);
                 } catch (IOException ex) {
                 }
             }
@@ -429,17 +430,17 @@ public class Paintt extends javax.swing.JFrame {
 
     private void AcercadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcercadeMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showInputDialog(this, "El autor de esto es muy inteligente");
+        JOptionPane.showInputDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("EL AUTOR DE ESTO ES MUY INTELIGENTE"));
     }//GEN-LAST:event_AcercadeMouseClicked
 
     private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Desea guardar la imagen ?", "Guardar", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("¿DESEA GUARDAR LA IMAGEN ?"), java.util.ResourceBundle.getBundle("Bundle").getString("GUARDAR"), JOptionPane.YES_NO_OPTION)) {
             JFileChooser dialogoArch = new JFileChooser();
             if (JFileChooser.APPROVE_OPTION == dialogoArch.showSaveDialog(this)) {
                 File arch = dialogoArch.getSelectedFile();
                 try {
-                    ImageIO.write(imagen, "png", arch);
+                    ImageIO.write(imagen, java.util.ResourceBundle.getBundle("Bundle").getString("PNG"), arch);
                 } catch (IOException ex) {
                 }
             }
@@ -525,19 +526,50 @@ public class Paintt extends javax.swing.JFrame {
                 }
 
                 case OVALOS: {
-                    
+    if (anterior == null) {
+        anterior = evt.getPoint(); // Primer clic: guardar la posición inicial
+    } else {
+        Graphics gVentana = lienzo.getGraphics();
+        Graphics gImagen = imagen.getGraphics();
+        gVentana.setColor(colorseleccionado);
+        gImagen.setColor(colorseleccionado);
 
-                           
-                    break;
-                }
+        int x = Math.min(anterior.x, evt.getX());
+        int y = Math.min(anterior.y, evt.getY());
+        int ancho = Math.abs(evt.getX() - anterior.x);
+        int alto = Math.abs(evt.getY() - anterior.y);
 
-                case RECTANGULOS: {
-                    
-                    break;
-                }
+        gVentana.fillOval(x, y, ancho, alto);
+        gImagen.fillOval(x, y, ancho, alto);
 
-                default:
-                    break;
+        anterior = null; // Reiniciar para el siguiente óvalo
+        gImagen.dispose();
+    }
+    break;
+}
+
+case RECTANGULOS: {
+    if (anterior == null) {
+        anterior = evt.getPoint(); // Primer clic: guardar la posición inicial
+    } else {
+        Graphics gVentana = lienzo.getGraphics();
+        Graphics gImagen = imagen.getGraphics();
+        gVentana.setColor(colorseleccionado);
+        gImagen.setColor(colorseleccionado);
+
+        int x = Math.min(anterior.x, evt.getX());
+        int y = Math.min(anterior.y, evt.getY());
+        int ancho = Math.abs(evt.getX() - anterior.x);
+        int alto = Math.abs(evt.getY() - anterior.y);
+
+        gVentana.fillRect(x, y, ancho, alto);
+        gImagen.fillRect(x, y, ancho, alto);
+
+        anterior = null; // Reiniciar para el siguiente rectángulo
+        gImagen.dispose();
+    }
+    break;
+}
             }
         }
 
@@ -573,7 +605,6 @@ public class Paintt extends javax.swing.JFrame {
 
                         gVentana.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
                         gImagen.drawLine(anterior.x, anterior.y, evt.getX(), evt.getY());
-
                         anterior = evt.getPoint();
 
                         gImagen.dispose();
@@ -621,21 +652,52 @@ public class Paintt extends javax.swing.JFrame {
                 }
 
                 case OVALOS: {
-                    
-                    break;
-                }
+    if (anterior == null) {
+        anterior = evt.getPoint(); // Primer clic: guardar la posición inicial
+    } else {
+        Graphics gVentana = lienzo.getGraphics();
+        Graphics gImagen = imagen.getGraphics();
+        gVentana.setColor(colorseleccionado);
+        gImagen.setColor(colorseleccionado);
 
-                case RECTANGULOS: {
-                    
-                       
-                    break;
-                }
+        int x = Math.min(anterior.x, evt.getX());
+        int y = Math.min(anterior.y, evt.getY());
+        int ancho = Math.abs(evt.getX() - anterior.x);
+        int alto = Math.abs(evt.getY() - anterior.y);
 
-                default:
-                    break;
-            }
+        gVentana.fillOval(x, y, ancho, alto);
+        gImagen.fillOval(x, y, ancho, alto);
+
+        anterior = null; // Reiniciar para el siguiente óvalo
+        gImagen.dispose();
+    }
+    break;
+}
+
+case RECTANGULOS: {
+    if (anterior == null) {
+        anterior = evt.getPoint(); // Primer clic: guardar la posición inicial
+    } else {
+        Graphics gVentana = lienzo.getGraphics();
+        Graphics gImagen = imagen.getGraphics();
+        gVentana.setColor(colorseleccionado);
+        gImagen.setColor(colorseleccionado);
+
+        int x = Math.min(anterior.x, evt.getX());
+        int y = Math.min(anterior.y, evt.getY());
+        int ancho = Math.abs(evt.getX() - anterior.x);
+        int alto = Math.abs(evt.getY() - anterior.y);
+
+        gVentana.fillRect(x, y, ancho, alto);
+        gImagen.fillRect(x, y, ancho, alto);
+
+        anterior = null; // Reiniciar para el siguiente rectángulo
+        gImagen.dispose();
+    }
+    break;
+}
         }
-
+        }
     }//GEN-LAST:event_lienzoMouseDragged
 
     private void grafitiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafitiActionPerformed
@@ -650,11 +712,11 @@ public class Paintt extends javax.swing.JFrame {
 
     private void colorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorActionPerformed
         // TODO add your handling code here:
-        Color opcion = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        Color opcion = JColorChooser.showDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("ELIGE"), Color.yellow);
         if (opcion != null) {
             colorseleccionado = opcion;
         }
-        Color opcion2 = JColorChooser.showDialog(this, "Elige", Color.yellow);
+        Color opcion2 = JColorChooser.showDialog(this, java.util.ResourceBundle.getBundle("Bundle").getString("ELIGE"), Color.yellow);
         if (opcion != null) {
             colorsecundario = opcion2;
         }
@@ -681,7 +743,7 @@ public class Paintt extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("Bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

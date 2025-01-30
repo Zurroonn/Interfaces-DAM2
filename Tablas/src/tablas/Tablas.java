@@ -51,8 +51,6 @@ public class Tablas extends javax.swing.JFrame {
         Seleccionar = new javax.swing.JMenuItem();
         Copiar = new javax.swing.JMenuItem();
         Añadir = new javax.swing.JMenuItem();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         Eliminar.setText("Eliminar");
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,34 +94,15 @@ public class Tablas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Madrid", "33", "5", "0"},
-                {"Barsa", "22", "4", "2"},
-                {"Valencia", "11", "3", "7"},
-                {"Getafe", "2", "1", "9"}
-            },
-            new String [] {
-                "Equipos", "Ganados", "Empatados", "Perdidos"
-            }
-        ));
-        jTable1.setComponentPopupMenu(jPopupMenu1);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTable1MouseReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         pack();
@@ -140,14 +119,6 @@ public class Tablas extends javax.swing.JFrame {
             }
         }    
     }//GEN-LAST:event_EliminarActionPerformed
-
-    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
-        // TODO add your handling code here:
-        
-
-            puntoPopup=evt.getPoint();
-        
-    }//GEN-LAST:event_jTable1MouseReleased
 
     private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
         // TODO add your handling code here:
@@ -253,7 +224,5 @@ public class Tablas extends javax.swing.JFrame {
     private javax.swing.JMenuItem Exportar;
     private javax.swing.JMenuItem Seleccionar;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

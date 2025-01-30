@@ -73,89 +73,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="387" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="648" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="287" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="483" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
-  <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
-          <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Equipos" type="java.lang.Object">
-                  <Data value="Madrid"/>
-                  <Data value="Barsa"/>
-                  <Data value="Valencia"/>
-                  <Data value="Getafe"/>
-                </Column>
-                <Column editable="true" title="Ganados" type="java.lang.Object">
-                  <Data value="33"/>
-                  <Data value="22"/>
-                  <Data value="11"/>
-                  <Data value="2"/>
-                </Column>
-                <Column editable="true" title="Empatados" type="java.lang.Object">
-                  <Data value="5"/>
-                  <Data value="4"/>
-                  <Data value="3"/>
-                  <Data value="1"/>
-                </Column>
-                <Column editable="true" title="Perdidos" type="java.lang.Object">
-                  <Data value="0"/>
-                  <Data value="2"/>
-                  <Data value="7"/>
-                  <Data value="9"/>
-                </Column>
-              </Table>
-            </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
-            </Property>
-            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseReleased"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTable1.setComponentPopupMenu(jPopupMenu1);&#xd;&#xa;"/>
-          </AuxValues>
-        </Component>
-      </SubComponents>
-    </Container>
-  </SubComponents>
 </Form>
