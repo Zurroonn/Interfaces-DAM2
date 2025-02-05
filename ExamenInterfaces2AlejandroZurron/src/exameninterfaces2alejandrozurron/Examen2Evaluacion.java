@@ -28,13 +28,14 @@ private Point puntoPopup;
     public Examen2Evaluacion() {
         initComponents();
         JComboBox<String> comboBox = new JComboBox<>(new String[]{java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("AVILA"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("BURGOS"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("LEON"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("PALENCIA"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("SALAMANCA"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("SEGOVIA"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("SORIA"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("VALLADOLID"),java.util.ResourceBundle.getBundle("exameninterfaces2alejandrozurron/Bundle").getString("ZAMORA")});
-        tabla.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(comboBox));
+        tabla.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new Combobox()));
         tabla.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer() {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         c.setBackground(Color.red);
         return c;
+        
     }
 });
 
